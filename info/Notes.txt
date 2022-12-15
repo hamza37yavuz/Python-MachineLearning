@@ -1,0 +1,473 @@
+REGRESSION
+
+	*Coklu Dogrusal Regresyon
+
+	-basit dogrusall regresyonda y = a + bx + e seklinde yazilabilir
+	-e: hata orani anlamina gelir. Coklu dogrusal regresyonda birden fazla b degeri vardir.
+	-b1x1+b2x2+.... şeklinde y yi etkileyen b degerleri yazilabilir bu regresyon modelinde her x degeri icin degisen bir e degeri vardir.
+	-Boy = a + b(kilo) + c(ayakkabi no) seklinde yazilabilir.
+
+	*Dummy variable
+	-Dummy variable daha önce kullanilan ve kategorize edilen bir sutunun birden fazlakere kullanimina verilen isim
+	bu kullanimdan cogu yapay zeka modeli etkilenmektedir.
+	ama birden fazla veri varsa kategorize edildiyse ornegin bir kisinin nereli olduguyla ilgili olabilir.
+	bu durumda kategorize edilen tum sutunlar kullanilmalidir
+
+	*p-value
+	H0 : null hypothesis sıfır hipotezi bos hipotez farksizlik hipotezi
+	H1 : Alternatif hipotez
+	p degeri : olasilik degeri genelde 0.05
+	P degeri kuculdukce H0 hatali olma ihtimali artar
+	P degeri buyudukce H1 hatali olma ihtimali artar
+	H0 : Ornek : ders calisma saati artarsa basarili olunabilir varsayimi
+	H1 : Ornek : ders calisma saati artarsa basarili olunmayabilir varsayimi
+	ne kadar H1 olursa H0 curutulebilir onu anlatan deger p degeri olur
+ 
+	*Degisken Secimi
+	-Cok degiskenli modellerde her degisken ayni oranda mi sonucu etkiliyor?
+	-Degisken secimi nasil yapilmali
+	
+-1* Butun Degiskenleri Dahil Etmek
+       -Butun degiskenler sisteme dahil edilir ve sonuc degerlendirilir.
+       -Bu yontem :
+           degisken secimi yapildiysa
+           zorunluluk varsa
+           kesif icin (hangi yontemi kullanmaliyim)
+       kullanilabilir
+        
+2* Geriye Dogru Eleme (Backward Elimination) (stepwise yaklaşım)
+       a) Butun degiskenler dahil edilerek  bir model insa edilir Model başarı testi yapılır
+       b) Signifacance Level SL seçilir genelde 0.05
+       c) En yüksek p-value değerine sahip olan değişken ele alınır 
+		şayet P>SL ise bir sonraki adıma değilse son adıma gidilir
+       d) Bu aşamada bir önceki adımda seçilen ve en yüksek p değerine sahip değişken sistemden kaldırılır.
+       e) Makine öğrenmesi güncellenir ve c ye geri dönülür.
+       f) Makine öğrenmesi sonlandırılır
+
+3* Ileri Secim (Forward Selection)
+       a) Butun degiskenler dahil edilerek  bir model insa edilir Model başarı testi yapılır
+       b) Signifacance Level SL seçilir genelde 0.05
+       c) En düşük p-value değerine sahip olan değişken ele alınır 
+       d) Bir önceki adımda seçilen değişken sabit tutularak bir değişken daha seçilir
+		ve sisteme eklenir	
+       e) Makine öğrenmesi güncellenir ve c ye geri dönülür. Şayet en düşük p-değere sahip değişken için
+		p<SL sağlanıyorsa c ye dönülür sağlamıyorsa diğer adıma geçilir
+       f) Makine öğrenmesi sonlandırılır
+
+4* Iki Yonlu Secim (Bidirectional Elimination) 	 ileriye ve geriye doğru eleem beraber çalışır 
+       a) Butun degiskenler dahil edilerek  bir model insa edilir Model başarı testi yapılır
+       b) Signifacance Level SL seçilir genelde 0.05
+       c) En düşük p-value değerine sahip olan değişken ele alınır 
+       d) Bir önceki adımda seçilen değişken sabit tutularak bütün değişkenler sisteme dahil edilir
+		ve en düşük p değerine sahip olan sistemde kalır.	
+       e) SL değerinin altında olan değişkenler sistemde kalır.
+		eski değişkenlerden hiçbirisi sistemden çıkarılmaz
+       f) Makine öğrenmesi sonlandırılır
+
+5* Skor Karsilastirma (Score Comparison)
+	bir başarı kriteri belirleyerek bütün olası modeller inşa edilir.
+	başta belirlenen kriteri en iyi sağlayan yöntem seçilir
+	makine öğrenmesi sonlandırılır.
+1 ve 5 bizim aklimiza gelecek yada deneyecegimiz seyler arasinda sayilabilir.
+
+	*POLİNOMAL REGRESYON
+	-Aynı değişkenin farklı katsayılar ve üs değerleri ile parabolik bir eğri oluşturduğunu göserir
+	-eğrileri tahmin etmede kullanacağımız yöntemi barındırır.
+
+	*SUPPORT VECTOR REGRESSION SVM (MACHINE)
+	*DESTEK VEKTÖRÜ
+normalde iki tane sınıfı ayırmak için kullanılan metot iki kümenin maksimum aralıkla birbirinden ayırma
+regresyonda maksimun noktayı içine alacak şekilde bir aralık oluşturmak için de kullanılır
+aralık ne kadar küçükse regression o kadar sağlıklı olur
+doğrusal olmayıp bu tahmin metodu kullanılan fonksiyonlar
+doğrusal olan , doğrusal olmayan
+Linear re	exponential
+		RBF gaussian 
+		polynomial
+
+	*Karar Ağacı DECISION TREE
+	2 boyutlu uzayda bir karar ağacı oluşturulur.
+	verileri dağılımına göre bölmeler oluşturulur.
+	oluşturulan bölmelerin train kümesinden ortalamalar yardımıyla tahminler yapılır
+	bu algoritmanın daha hassas olması gerekiyorsa bölüm sayısının artırılması gerekir
+
+	*RANDOM FOREST rassal ağaçlar
+	Ensemble Learning kollektif öğrenme birden fazla model kullanma
+	öğrenme 1 den fazla karar ağacı için aynı veri kümesiüzerine çizilmesi ve kullanılması
+	veri karar ağacı kullanılarak bölümlere ayrılır ve ayrılan bölümler bir daha parçalara ayrılarak bundan yararlanma
+	bu ayrılan küçük ağaçlar arasında ortalamalardan faydalanılarak tahmin işlemi yapılabilir
+	nasıl birleştirileceği ile ilgili yeni yöntemler vardır.
+	karar ağaçlarında tüm değerleri alma bazen hatalar artar.
+	bunu sebepleri - tümünü öğrenirse ezberler overfitting olur
+	       - çok veri alırsa ağaç çok dallanır bu da işlem hızını düşürür
+
+Regresyon Yöntemlerini Karşılaştırma Evaluation of Predictions
+
+	R Square Metodu   
+	
+	hata kareleri toplamı topla(veri-tahminiveri)^^2
+	ortalama farkların toplamı topla(veri-veriort)^^2
+	R^^2 = 1-HKT/OFT
+	bu deger R^^2 degeri 0 gelirse aptal bir algoritma olduğunu söyler
+	0 ise degerlerin ortalamasının tümdegerlerle ayni oldugunu söylersek R^^2 = 0 olur
+	eger R^^2 - degerler alabilir ama - cıkarsa bu modelin kötülügünü gösterir
+	eger R^^2 = 1 ise mükemmel bir algoritma oldugunu söyler gerçek dünyada 1 görme ihitimalimiz ancak hata yaptıysak vardır
+	
+	Düzeltilmiş(ADJUSTED) R Square Metodu
+	
+	yöntemleri karşılaştıralım : yaptigimiz bazi olumlu calismalari maskeleyebilir.
+	yani modelimizin ne kadar geliştiğini görmemizi engelleyebilir. örnek multi lineer regresyon yapalım
+	bu regresyonda yeni bir değişken eklemesi yapıldığını varsayalım. bu ekleme yapıldığında carpan 0 olarak alinir.
+	bu carpan 0 olarak alinir ve şayet negatif etkisi varsa R^^2 degeri degismez.
+	düzeltilmiş R^^2=1-(1-R^^2)(n-1)/(n-p-1) yukarıda yazdığımız problemi çözme bu şekilde saglanir.
+	bu yöntemler dışında farklı yöntemler de vardır bunların dez avantajları var olduğunu bilmeliyiz.
+	
+---CLASSIFICATION SINIFLANDIRMA PROBLEMLERI---
+Sayısal olmayan verilerin tahmin edilmesi şeklinde kısaltılması şeklinde tanımlanabilir.
+Sayısal tahmin yapıyorsak regresyon bir verinin kategorisini belirlemek istiyorsak sınıflandırma yapabiliriz
+
+	*LOGİSTİC FUNCTİON REGRESSION
+	-Adımlı fonksiyon elde ederek sınıflandırma yapmamızı sağlar
+	-bir veya daha fazla değişken kullanılarak sınıflandırma yaptırılabilir
+	-S şeklinde fonksiyonlar görmemiz mümkündür.
+	-bu algoritmada kullanilacak veriler olceklendirilmelidir
+	
+	*Karmaşıklık Matrisi (CONFUSION MATRİX)
+	-Tıptan gelen bazı veriler için oluşturulmuş gibi
+	-Gerçek ve tahmin arasında doğruluk oranını verir.
+	-Tahminler ve gerçek durumları barındıran bir matrikstir.
+	-Diagoneli başarıyı gösterir. köşegen verileri toplamı bölü tüm toplam accuracy veirir
+	-Accuracy başarı oranıdır.
+	-True Positive Rate gerçekte evet ise kaçı doğru sınıflandırılmış?
+	-False Positive Rate tahmin hayır ise kaçı doğru sınıflandırılmış?
+	-Specifity gerçekte hayır ise kaçı doğru sınıflandırılmış?
+	-Precision tahmin evet ise kaçı doğru sınıflandırılmış?
+	-Prevalence gerçekteki evet dağılımı oranı
+
+	*HATA
+	-false positive Tip 1 Hata
+	bizim evet dediğimiz bir şey hayır ise
+	-false negative Tip 2 Hata
+	bizim hayır dediğimiz bir şey evet ise
+	-SVM'de Hata
+	risk area içerisinde tst verisi çıkması ve bunun yanlış sınıflandırılması
+
+	*ACCURACY PARADOX doğruluk paradoksu
+	ZeroR algoritması eğitim için verilen veri seti içerisinde çoğunlukta olan sınıfa göre test verilerini sınıflandırır.
+	normal bir sınıflandırma algoritmasına göre bazen daha başarılı gibi gözükebilir ama dikkatli olunmalıdır
+	Böyle durumlarda sadece Accuracy e bakarak karar vermememiz gerekir.
+	denge elde etmeye yönelik karmaşıklık matrisi içerisindeki farklı değerleri kullanabiliriz
+
+	ROC EĞRİSİ Receiver Operating Characteristic
+	tpr = TP/TP+FN  TP-> true positive tpr-> true positive rate buranın değerinin yüksek olması hata oranını ARTIRIR
+	fpr = FP/FP+TN  FN-> false negative fpr-> false positive rate buranın değerinin yüksek olması hata oranını AZALTIR
+	Görsel olarak makine öğrenmesi algoritmasının nerede olduğunu anlamamızı sağlar
+	Farklı sınıflandırma algoritmalarını grafiksel olarak kıyaslama için kullanılabilir.
+	Accuracy Doğrularında positive/negative oranına göre veri setlerinin oranı bulunur.
+	  
+
+	*KNN K NEAREST NEIGHBORHOOD:
+	-sınıflandırılacak veriler uzaya dökülür.
+	-bir veri seçilir veriye en yakın 3 komşu seçer.
+	-bu komşular içerisinde çoğunluk hangi sınıfta ise seçtiğimiz veri bu sınıftadır.
+	-eğer komşular sınıflardan eşit sayılarda ise bu drurumda uzaklığa bakılır.
+	-bu yukarıda anlattığımız lazy learning örneğidir. yani başlangıçta öğrenme yapılmayan çeşittir
+	-başka bir versiyonda önce veriler üzerinden bölgelere ayrılır yani uzaydan veriler çeker
+	-çektiği verilere göre uzayı bölgelere ayırır. ve verilere bir daha ihtiyaç duymaz
+	-eğer yeni bir veri gelirse hangi bölgede olduğuna bakar.
+	
+	-iki veri arasındaki uzaklığı ölçmenin farklı hesaplama yolları da vardır.
+	-euclidean minkowski mahalanobis bu hesaplama örnekleridir.
+	-hangi ölçümün hangi veri seti için uygun olacağı önemlidir bu seçime dikkat edilmelidir.
+	
+	-bu algoritma kullanılırken eğer veri setimizi bozacak uç verilerimiz varsa
+	  komşu sayısını fazla seçmek pek iyi bir şey değildir. çünkü komşu uç değerler
+	  böyle bir durumda yeter sayıda komşu bulamayacaklar ve yanlış sınıfa dahil olacaklardır.
+	-yukarıda yazdığım madde göz önüne alınarak komşu sayısı seçilmelidir.
+
+	-bu algoritma ile regression da yapılabilir.
+	Kaynaklar	 
+	sklearn knn yazıp kaynaklara bakabilirsin
+
+	*SVM ile SINIFLANDIRMA SVC MULTI CLASS 
+	regression yöntemiyle neredeyse aynı şeyler söylenir.
+	sınıflandırmada iki sınıfın birbirinden keskin ayrımı yapılmaya çalışılır
+	RBF ya da polynomal üssel kullanılabilir. bu kullanımlar veri setine göre seçilmelidir.
+	uç değerler için çok uygun değildir.
+	ayrıca ölçeklendirilmemiş veri setleri SVM'de kullanılamaz.
+	çok uç değerlerin olduğu veri setlerinde kullanılamaz.
+	iki sınıf arasında bir ayrım yapıldıktan sonra veri seti unutulur
+	sınıf ayrımı yani uzay bölgeleri üzerinde yeni veriler sınıflandırılır.
+	yani verinin bulunduğu bölge sınıfını belirler. 
+	eğer marjin içerisine hiçbir şekilde veri almyorsa hard svc olarak isimlendirilir
+	eğer veri alıyorsa soft svc olarak isimlendirilir 	
+
+	*SVM KERNEL TRICK
+	doğrusal olmayan hiç bir şekilde doğrusal olarak çözümlenemeyen veriler için kullanılır.
+	non linear alanın orta noktası bulunur ve veri setine bir boyut daha eklenir.
+	belirlediğimiz orta nokta bize en yakın nokta olur.
+	orta noktaya yakın değerler bize daha yakın orta noktaya uzak değerler bize daha uzak olur
+	bu da bize uzak ve yakın olmak üzere iki küme oluşturma imkanı sağlar.
+	bu şekilde boyut artırmaları yapılabilir.
+	yeni oluşan çok boyutlu küme üzerine farklı çizimler yapılarak sınıflandırmalar hassas şekilde yapılır.
+	ayrıca birden fazla kernel trick bir veri setinde kullanılabilir.
+	bu çekme işlemi nasıl yapılır:
+
+	*NAIVE BAYES
+	koşullu olasaılıklardan yararlanarak sınıflandırma problemleri çözme amacıyla kullanılır
+	koşullu olasılık ile gelir düzeyine göre bilgisayar alma oranı bulunabilir
+	bilgisayar alan kişileri gelir düzeyine göre sınıflandırma yapabilirsiniz.
+	dengesiz veri kümelerinde çalışabilmesi en önemli özelliğidir.
+	önce bilgisayar alma ve almama oranı hesaplanır.
+	30 yaşından küçük bir kişinin bilgisayar alma ve almama oranı
+	bu şekilde şartlara ayrılan durumumuz üzerinden sınıflandırmamız rahat bir şekilde yapılabilir.
+	lazy learning: veri önce gelir o veri içerisinde beklenir veri akışı devam ederse öğrenmeyi yapar
+	eager learning: veri gelmeden önce tüm veriler üzerinden tüm ihtimalleri öğrenmeye çalışır
+	büyük veri çalışmalarında lazy learning daha avantajlıdır.
+	Gaussian naive bayes-multinomial naive bayes-bernoulli naiv bayes
+	sürekli değerler    - kesikli sayılar için  - iki ihtimalli olan veriler için
+	
+	*KARAR AGĞACI İLE SINIFLANDIRMA DECISION TREE
+	bölgelere ayrılması hususunu yukarıda analatmıştık
+	çoğunluğun bulunduğu alan çoğunluğa göre sınıflandırılır
+	ve yeni gelen veri için oluştururlan bölgelere göre karar verir
+	bazen birbirine yakın değerler için bölme işlemleri devam edebilir.
+	ama burada tüm verilerin teker teker ayrılmasından kaçınılması gerekir
+	yoksa overfitting olur ve program tüm verileri ezberle
+	karar ağaçlarında ordinal ya da nominal veriler bulunmuyorsa direkt sınıflandırmalara başlanabilir
+	ama sayısal değerler barındırıyorsa sayısal değerlerin bölünmesi için ayrı bir algoritma kullanılır.
+	ağaç dallanması Quinlan's ID3 information(Gain) yöntemi ile çözülebilir.
+	burada değeri yüksek çıkan ilk dallanmayı yapacağını söyler.
+	bilgisayarlar bu şekilde ağaç yapılarını oluşturur.
+	dökümantasyondaki parametrelerden CRITERION parametresini kullanacağız
+	geany: p*p lerin negatiflerinin toplamı
+	entropy: p*log(p) nin negatifleri toplamı
+    	
+	*RASSAL AĞAÇLAR RANDOM FOREST 
+	ensemble learning veriyi parçalara bölüp parçalar üzerinden karar ağacı oluştururlur.
+	her karar ağacı en son birleştirilecek çoğunluğa göre sınıflandırma yapılır
+	xboxlarda hareket algılama ile ilgili yazılmış makale microsoftun linki alt satırda
+	majority vote algoritması üzerine kurulu bir algoritmadır.
+	n_estimators : kaç ağaç oluşturayım
+	criterion : karar ağacında belirtildi
+	
+	ADA BOOST - QDA - GAUSSİAN PROCESS - NEURAL NET
+
+	*Classifyer Comparison 
+	
+
+KÜMELEME BÖLÜTLEME
+	
+	-görüntü işeleme ve müşteri segmentasyonu gibi konular buraya dahildir.
+	-elimizdeki örneklerin kaç sınıf olduğu ya da nasıl sınıflanacağı öncesinde verilmez
+	-gözetimsiz öğrenme unsupervise öğrenme olaraka da söylenebilir.
+	-burada train test verileri şeklinde bir ayrım yoktur
+	-sınıflandırma probleminden farkı bir sınıf tanımı ve train test bölümü yoktur.
+	-kendi dünyasında kendi sınıflarını oluşturur şuan çok fazla gelişmiş modeli yoktur.
+	-en çok Müşteri segmentasyonu , pazar segmentasyonu , sağlık görüntü işleme alanlarında kullanılır.
+	-Müşteri segmentasyonu -> Collabration Filtering müşterinin kendisine benzeyen kişilerle gruplandırılması
+	yani daha önceden hakkında data bulunmayan bir kişiyi bir segmente koymayı sağlar
+	-Özel kampanyalar yapma, tehdit ve sahtekarlık yakalama,eksik veri tamamlama işlemleri
+	-tehdit ve sahtekarlık yakalama da outlayerda olan veriler kullanılarak oluştururlur
+	-eksik veri tamamlamada verinin farklı segmentlerine göre veri tamamlamalar yapılabilir.
+	-daha çok oluşturulan sınıflandırılmış bir verinin alt sınıflandırmalar yapılarak segmentlerin oluşturulması
+	
+	*K-MEANS K-ORTALAMA
+	-kaç küme olacağı kullanıcıdan parametre olarak alınır
+	-bunun kullanıcıdan alınmayan algoritma şeklinde olanı da vardır
+	-rastgele olarak k merkez noktası seçiyor.
+	-Her veri örenği kendisine yakın merkeze noktasıyla ilgili kümeye atılır
+	-her küme için tekrar merkez noktaları oluşturulur ve kaydırma yapılır
+	-ağırlık merkezlerine göre kaydırma yapılır. ağırlık merkezi devamlı aynı yerde çıkmaya başlayınca durur. 
+	-değişik varyasyonları bulunur bu varyasyonlarda merkez noktsı seçimi kullanıcıdan parametre alma işlmeleri farklılık gösterebilir
+	K-Means Başlangıç Noktası Tuzağı
+	-rastgele başlangıç noktasının yanlış veri uzaylarına dağılması bölütlemeyi kötü etkileyebilir.
+	-bazen rastgele olarak başlatmak bu yüzden tehlikelidir. 
+	K-Means ++ 
+	-K-Means geliştirilmiş versiyonudur. rastgele seçilen noktalardan en yakınına her noktada uzaklığı hesapla
+	-yeni noktaları mesafenin karesini olasılık alarak yeni nokta bulunur
+	-burada da bir rassallık vardır bu da sorun oluşturabilir.
+	K nın kaç olduğunun önemi
+	-K nın seçimi gözetimsiz öğrenme algoritması olduğu için önemlidir
+	-ex means algoritması ile bir aralık verildiğinde bu aralıktaki tüm bölütlemelerin skorunu çıkarır
+	-ama başarının nasıl bulunacağı da başka bir sorun olarak ortaya çıkıyor.
+	-bu skorlama WCSS yöntemi ile yapılır bir merkez seçilir ve onun kümesindeki verileri ona uzaklıklarının kareleri toplanır.
+	-bu skor ne kadar yükselirse bölütleme algoritması o kadar kötü olduğu söylenebilir.
+	ama bu skor overfitting olmaması için çok düşürülmemelidir. burada bir grafik oluşturulmalı ve grafiğe göre karar verilmeli
+	-oluşturulan grafikte eğimin aniden değiştiği dirsek nokta genelde doğru nokta olarak alınır.
+	-K means algoritmasının başka problemleri de vardır ama bu kadarı şuanlık yeterli
+	-overview of clustering methods dan hangi metodu kullanacağınızı bilgi edinebilirsin
+	-bunu scikitlearn sitesinden alabilirsin
+	
+	*HIERARCHICAL CLUSTERING
+	-Agglomerative
+	Aşağıdan yukarıya 
+	Her veri tek bi küme bölüt ile başlar
+	En yakın ikişer komşuyu alıp ikişerli küme oluşturulur.
+	En yakın iki kümeyi alıp yeni küme oluşturulur
+	Tek bir bölüt küme oluncaya kadar devam eder
+	İçerisindeki sınıf yapılarıkaybolmaz
+
+	-Divisive
+	Yukarıdan aşağıya sınıflandırma şeklinde olur
+	bütün veriler bir küme olarak kabul edilir.
+	birbirine yakın olan noktalar kümelenir son tek nokta kümeye eklendiğinde biter
+	
+	-Mesafe Ölçümü bir problemdir
+	mesafeler distance matrix ile gösterilebilir.
+	-Referanslar farklı bir problem 
+	referans olarak en yakın noktalar alınabilir.
+	en uzak noktalar hesaplanabilir.
+	kümenin orta noktası referans alabilir.
+
+	-Dendogram
+	Tüm noktaların yazılı olduğu ve aralarındaki mesafye göre yerleştirilmiş tablo yapısı
+	bu tablo yapısına göre hiyerarşik bölütleme görülmesi kolaylaşır
+	kullanıcının istediği kadar bölüt oluşturma imkanı sağlanır.
+	en optimum yapıyı elde etmek için dendogramın en uzun olduğu bölmeye bakılabilir
+	
+	WARD METHOD 
+	her bölütün başka bir bölüte uzaklığı
+	wcc değeri hesaplama yöntemini kullanır.
+	ward methodu kullanılarak da optimum model bulunabilir.
+
+BİRLİKTELİK KURAL ÇIKARIMI ASSOCIATION RULE MINING LEARNING
+	Alışveriş sepetinden ortaya çıktığı düşünülebilir
+	Tekrar eden verilerin yakalanması armut alanlar elma da aldı gibi
+	İlişkisellik mi nedensellik mi? Causation Correlation
+	bilgisayar dondurma satışı ve köpekbalığı saldrıları arasındaki ilişkiye bakar
+	burada bilgisayarlar nedenselliği dikkate almaz yani neden aynı anda oluyoru sormaz
+	biz sorarız ve bunu güneşe bağlarız
+	*DESTEK SUPPORT
+	yüz kişiye sorduk şeklinde düşünelim eylemin varlığı önemli
+	yüzde kaç bir eylimin yapıldığı
+	*CONFIDENCE
+	a olayını yapan kişilerin yüzde kaçı b olayını yaptı şeklinde yüzdelik
+	tek bir ürün eylm olmadığı zaman bu yöntem kullanılabilir.
+	*LIFT(a->b)  confidence(a->b)/support(b)
+	lift değeri 1'in altında çıkarsa a olayı b olayını negatif etkiliyor
+	lift değeri 1'in üstünde çıkarsa a olayı b olayını pozitif etkiliyor	
+	*OLAY SIKLIĞI(APRIORI)
+	önce parçalayarak oranlara bakıyoruz düşük değerleri eleme yoluna gidilebilir.
+	sonra o parçaların birbirlerine etkisi alınarak bazı birleştirmeler yapılır.
+	ve en optimize durum elde edilmeye çalışır.
+	işin sonunda bir kişi a ve b olaylarını yaptıysa c olayını ya da d olayını tercih etmesi ihtimallerine göre sınıflandırılır
+	Tekrar ARM HAKKINDA ARL yönlendirilmiş ve yönlendirilmemiş diye ayrılabilir
+	bu şekilde sınıflandırmalarda pazarlama önerilerinde kullanılır.
+	bu algoritma için scikitlearn de bir fonksiyon ve sınıf yoktur.
+	bunu kullanacağın zaman githubdan indir.
+	*ECLAT ALGORİTMASI
+	Equivalence Class Transformation
+	Eclat adım olarak Aprioriye göre çok daha kısadır.
+	dikey grafik olarak veri tabanı dizilir.
+	bütün veriler okunmadan bir sonraki basamaklara geçilebiliyor.
+	dikey olarak çizilen tabloda verilerin kesişimine bakılır.
+	ürün bazlıdır müşteri bazlı değildir şeklinde söylenebilir item bazlı değilidir
+	Aprioride ürün bazlı gidilir ve müşteriler kıyaslanır burada tam tersi
+
+	Apriori -> breadth first search
+	Eclat -> Depth First Search 
+
+REINFORCED LEARNING TAKVİYELİ PEKİŞTİRMELİ ÖĞRENME
+	robotlar ve hareketleri bir algoritmanın hatalardan öğrenmesi
+	bizim tanımladığımız hedefleri gerçekleştirme konusundaki en optimize duruma erişmek gibi düşünülebilir
+	yazılan algoritma bir aksiyon yapar ve gözlem yaparak aksiyonun puanlaması yapar
+	puanlamaya göre cezalar olur ve sistemler bu şekilde öğrenmesi en optimize durum elde edilmeye çalışır
+	AlphaGo kendi kendine oynayarak öğrenmiş bir yapay zeka örneği (sen de araştırarak öğren)
+	expert system lerde gelebileceği en iyi seviye insan olacak şekilde düşünülebilir.
+	agent -> environment -> agent -> environment şeklinde sonsuz döngü
+	
+	*TEK KOLLU CANAVAR SLOT MAKİNALARI ONE ARMED BANDIT
+	bir kumarahaneye gittiniz ve çok sayıda bu makineden gördünüz
+	bu makineler sizin paranızın %80-90 oranında kısmını size geri verir.
+	bu makinaları keşfettiniz ve dağılımları incelediniz
+	hepsi aynı oranda kazansa bile dağılımları inceleyip en karlı makineyi seçme işlemi
+	bu teori yukarıda yazdığım kısma dayanır
+	bir reinforced yöntemi ile bulunabilir
+
+	*A-B TEST
+	bir reklamın kullanıcı tarafından tıklanıp tıklanmayacağını bulmak için kullanılır
+	kullanıcılara birden fazla reklam göstererek insanların tepkisi ölçülür ve sonuçlar kaydedilir.
+	bu da başarı oranını bulma amaçlı oluşturulmuş teoridir 
+	bir reinforced yöntemi ile bulunabilir
+
+	Bu konunun ilk algoritması UCB Upper Confidence Bound
+	*UPPER CONFİDENCE BOUND UST GUVEN SINIRI
+	Her olayın arkasında bir dağılım vardır.
+	Kullanıcı her seferinde bir eylem yapar (event e)
+	Bu eylem karşılığında skor döner örneğin tıklanma 1 tıklanmama 0 gibi
+	Amaç tıklanmaları maksimuma çıkarmak
+	Alt sınır ve üst sınır olarak iki durumumuz var mükemmel durum ve en kötü durum
+	Bilmediğimiz gizi dağılım durumunu tespit etmek için denemeler sonucu dağılımın bazı kısımları elenir
+	Bu elenmelerden sonra en iyi durum en hızlı şekilde elde edilmeye çalışılır
+	Bu algoritma belirli bir aşama sonrasında alternatifler arasında en yüksek değere sahip olanı baz alır
+	Belirli bir hata oranını göze alarak optimum duruma en yakın durumu elde etmeye çalışır.
+	
+	SENARYO
+	Reklam Verileri: en fazla tıklanan reklam bulunacak ilk 5 güne bakılacak 6. gün en çok gösterilen reklam kullanıcı karşısına çıkacak
+	Random Selection: herhangi bir zeki seçim yapmaz rastgele seçer ödül kazanma mantığı işler
+			bu mantığa göre en optimize sonuca ulaşabilecek miyiz?? bunu UCB ile deneyelim
+			Burada önemli bir şey var reklamların tıklanma sıklığı eşit değildir.
+ 
+	*THOMPSON ÖRNEKLEMESİ:
+	Adım 1 : Her aksiyon için iki sayıyı hesaplamalıyız 
+		Ni1(n): o ana kadar ödül olarak 1 gelmesi sayısı
+		Ni2(n): o ana kadar ödül olarak 0 gelmesi sayısı
+	Adım 2: her ilan için aşağıda verilen Beta dağılımında bir rastgele sayı üretiyoruz
+		Oi(n) = B(N1i(n) + 1.N0i(n) + 1)
+	Adım 3: En yüksek Beta değerini seçiyouz
+	Bayes yaklaşımını takip eden bir algoritmadır daha çok bayese yakındır
+	UCB bu algoritmaya göre greedy algorithm olarak isimlendirilebilir.
+	Elinizde yeterli veri yok ve bir miktar veriden hem öğrenme hem uygulama
+	Gözlemlerin eşit dağılmadığı durumlarda
+	Ucb sıçramalarda kullanılır lineer bir ilerleme ile yapılır
+
+NATURAL LANGUAGE PROCESSING
+DOĞAL DİL İŞLEME
+	2 tip hedef olabilir
+	*Natural Language Understanding NLU
+	*Natural Language Generetion NLG
+
+	Yaklaşımlar
+	*Linguistik (dil bilimi) yaklaşımı
+		#cümle yapısına göre analiz yapar kelimelerin ek kök analizi yapar
+		#bu sebeple yavaş çalışır ama daha isabetlidir
+		#morfoloji Şekilbilim bütün alternatifler listelenmeli bir kelimenin bütün anlam ihtimalleri alınır
+		#Syntax Sözdizim anlamları sıralanan kelimenin cümle içindeki yeri tespit edilir
+		#Semantics Anlambilim morfoloji kısmında belirtilen anlamalardan hangisi syntaxa uygun
+		#Pragmatics Kullanımbilimi kullanılan kelimenin alay mı ironi mi olduğuna bakılır.
+	*İstatistiksel yaklaşımlar 
+		#metin sınıflandırmada kelimelerin anlamını anlamadan metnin hangi konuda lduğu anlaşılabilir  
+		#N-gram belirli karakterlerin peşpeşine gelmesi ihtimallerini bulur
+		#TF-IDF
+		#Word-Gram
+		#BOW Bag OF Words mail spam mi değil mi gibi şeyleri tespit edebilir.
+			spam mailde olan kelimeler ve olmayan kelimeler farklı çantalara konur ve metinden sayılır
+	*Hibrit yaklaşımlar  	 
+		# ikisinin karışımı
+	-ÖRNEKLER
+	*Yazar Tanıma
+	*Metin SInıflandırma
+	*Duygusal Kutupsallık Fikir Madenciliği
+	*Anomali Yaklanması
+	*Metin Özetleme
+	*Soru Cevaplama
+	*Etiket Bulurları ve Anahtar Kelime Çıkarımı
+	-KÜTÜPHANELER
+	*nltk
+	*Spacy : Endüstriyel
+	*nlp : Stanfor university
+	*OpenNLP : Apache açık doğal dil işleme
+	*RAKE (Rapid Automatic Keyword Extraction)
+	*Amueller Word Cloud
+	*Tensor Flow Word2Vec
+
+	-Türkçe Doğal Dil İşleme Kütüphaneleri
+	*Zemberek
+	*İTÜ
+	*TSPELL
+	*Yıldız Teknik Üniversitesi Kemik
+	*Wordnet Balkanet
+	*TrMorph
+	*TSCorpus
+	*Metu-Sabancı Tree Bank ve ITU Dpğrulama Kümesi
