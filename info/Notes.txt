@@ -1,3 +1,5 @@
+						MAKİNE ÖĞRENMESİ (NOTLAR)
+
 REGRESSION
 
 	*Coklu Dogrusal Regresyon
@@ -471,3 +473,112 @@ DOĞAL DİL İŞLEME
 	*TrMorph
 	*TSCorpus
 	*Metu-Sabancı Tree Bank ve ITU Dpğrulama Kümesi
+	
+	Makine öğrenmesinde hazır verilerden yararlanma durumu yoktur
+	DDİ de biz makinelerin insan öznitelikleri çıkarma konusunda insan yakınlaşmalıdır
+	Makine öznitelik konusunda bizimle eşdeğer değildir.
+	Bu sebeple veri ilk önce önişlemeden geçirilir sonra veri öznitelikleri çıkarılır.
+	Sonrasında makine öğrenmesi algoritmaları çıkarılır.
+	Veri ön işleme : preprocessing, stop wods, case, Parsers(html)
+	Öznitelik Çıkarımı : feature engineering, kelime sayıları, kelime grupları, n-gram, RF-IDF
+	
+YAPAY SİNİR AĞLARI: ARTIFICIAL NEURAL NETWORK:
+
+	İnsan vucudundaki sinir hücrelerine benzer yapılar oluşturarak bir yapay zeka oluşturmayı ifade eder
+	Anahtar Kelimeler:
+		Sinirbilim ve bilgisayar bilimi
+		Nöron
+		Sinapsis
+		YSA çalışma mantığı
+		Gradient Descent
+		Stochastic Gradient Descent
+		Backpropagation
+	
+	Bu modelde veriler kesinlikle standartlaşmış olmalıdır 0-1 aralığında olmalıdır.
+	Bazı durumlarda sinapslarda veriler standartlaştırılabilir.
+	Bu modelde çıktılarda 0-1 aralığında gelir. sonuçlar buna bağlı olarak oluşur.
+	Çıktılar çoklu bir şekilde de olabilir. birden fazla çıktı görülebilir.
+	Sinapsislerin üzerinde ağırlıklar taşınır bu ağırlıklar karar verme sürecini etkiler.
+	
+	Girdiler ağırlıklarla çarpılır sonuçlar toplanır ve bu sonuca göre nöron dışarıya ne verieceğine karar veriyor
+	
+	Bir nöronun aktive olması için bir aktivasyon fonksiyonu vardır. Aktive olup olmayacağına bu fonksiyona göre karar sağlanır.
+
+	Aktivasyon fonksiyonu ve versiyonları:
+		Bu fonksiyonlar insan vucudunda bir nöronun elektriksel sinyalinin eşik değeri gibi düşünülebilir.
+		Herhangi bir fonksiyon aktivasyon fonksiyonu olarak kullanılabilir(genelde).
+		Ama bazı fonksiyonlar daha çok kullanılır.
+		Sigmoid fonksiyonlar: 1/(1+e^-t) en çok kullanılan fonksiyondur.
+		Adım fonksiyonu bir treshold değeri olan donksiyondur belirli bir noktadan sonra atlama yapan fonksiyondur. ya 1 ya 0 döndürür.
+		Sigmoid fonksiyonlar 0 ile 1 arasındaki değerleri belirli bir eşik değer olmaksızın alırlar grafiksel olarak düşünülürse grafiğin belirli bir bölümünde 0 lırlar belirli bir bölümünde 0 ile 1 arasında değer alırlar belirli bir dölümünde 1 alırlar
+		Düzleştirilmiş Fonksiyon ise belirli bir aralıkta 0 değeri verir. belirli bir değer sonrasında 0 dan büyük değerler alır. max(0,x) şekilinde bir fonksiyon düşünülebilirç
+		tanh fonksiyonu (bunu açıklamayacağım)
+		
+	Yapay Sinir Ağları:
+		Giriş katmanı gizli katman ve çıkış katmanı olmak üzere 3 katmandan oluşur.
+		Gizli katman sayısı artabilir. Ya da gizli katmandaki nöron sayısı artabilir.
+		Çıkış katmanı ve gizli katman bir nörondan oluşur.
+		Yapay sinir ağlarında gizli katmanda kaç adet nöron olacağı önemlidir.
+		Bunu belirlemek için koordinat sisteminden faydalanabiliriz.
+
+		|   
+		| .       .           Yandaki karede köşegenlerin noktalarını içine alacak 
+		|				yapay sinir ağı tasarlamak istiyoruz iki tane girişimiz
+		| .       .			var bir çıkışımız var gizli katmanda kaç nöron olur			|			
+		|________________		yalnızca doğrusal olarak uzayı bölebiliriz.
+		
+		Bu durumda köşegenlerin çıktı içerisinde olmasını istiyorsak en az iki nöron kullanmalıyız.
+		
+	Yapay Sinir Ağları Nasıl Öğrenir:
+		Buradaki öğrenme ağırılık ve treshold sayısal değerlerinin artırılması ve azaltılmasından ibarettir.
+		En basit öğrenme Perceptron: bir ceza mekanizması işler 
+		ceza = 1/2 (gerçek-tahmin)^2 her yanlış tahminde ağırlıklar ceza ile çarpılır
+	
+	
+	Gradyan Alçalış:
+		Yapay sinir ağlarında öğrenme esnasında ağırlıklar belirli değerlerle çarpılır.
+		Bu öğrnme süreci çok katmanlı yapay sinir ağlarında çok fazla işlemle olmaktadır
+		Öğrenme sürecini sistematikleştirmeye ve doğru öğrenim yöntemine ihtiyacımız var
+		Eğer büyük öğrenme oranları kullanılırsa ağırlıkların devamlı 2 farklı değer arasında kaldığı ve doğru değeri bulamadığı gözlenebilir.
+		Küçük öğrenme oranları kullanarak doğru koşulun sağlandığı nokta bulunmya çalışılır.
+		Gradyan alçalış tam olarak bu duruma verilen isimdir.
+		
+
+	Stokastik-Batch (yığın) Gradyan Alçalış:
+		Gradyan alçalışın bir çeşididir. Yerel minimum noktalar için geliştirilmiştir.
+		Mutlak minimum noktasını bulmaya çalıştığımızı varsayalım. 
+		Yerel minimum bir noktayı mutlak minimum olarak almamızı engelleyen bir algoritmadır.
+		Stokastik verilerin tamamını görmeden karar verir. Batch bu minimum noktaları ayırt etmek için verşlerin tamamına bakılır.
+		Mini batch yaklaşım diye bir olay da vardır. Verinin belirli bir kısmını okuyarak karar verme olarak adlandırılır. 
+		Bu yaklaşımlardaki amaç en bize gelen veri setindeki en optimum veriyi bulabilmek ya da bize gelen verilere en uygun anlamı kazandırmak içindir.
+	
+    Not:
+	Nöral sinir ağları her zaman ön işleme istemez eğer nöron sayınız yeterliyse.
+	Çünkü ön işlemeyi sizin yerinize fazladan verdiğiniz nöronlar yapar
+		
+	Geri Yayılım (Backward Propagation)
+		Algoritma Adımları:
+		1 Bütün ağı rasgele sayılarla (sıfıra yakın ama sıfır değil) ilkendir.
+		2 Veri kümesinden ilk satır giriş katmanına verilir.(Her öznitelik bir nöron)
+		3 İleri yönlü yayılım yaparak YSA istenen sonucu verene kadar güncellenir.
+		4 Gerçek ve çıktı arasındaki fark hesaplanır.
+		5 Geri yayılım yaparak her sinaps üzerindeki ağırlık hatadan sorumlu olduğu miktarda değiştirilir. Değiştirilme miktarı ayrıca öğrenme oranına bağlıdır.
+		6 1-5 arasındaki adımlar istenen sonuç elde edilene kadar güncellenir.
+		7 Bütün eğitim kümesi çalıştırıldıktan sonra bir tur (epoc) Aynı veri kümeleri kullanılarak tur tekrarları yapılır. (tur sayısı sınırlanabilir)
+		
+	Learning rate Öğrenme hızını ifade eder. Epoc tur sayısını ifade eder.
+
+	(Takviyeli öğrenme veya eldeki bütün verileri ilgili ağda çalıştırdıktan sonra bir seferde güncelleme yap)Bunlar madde 6 için
+
+
+
+- İleri Yayılım (Forward Propagation)
+		
+
+
+
+
+
+
+
+	
