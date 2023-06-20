@@ -45,6 +45,23 @@ x_train, x_test,y_train,y_test = train_test_split(X,Y,test_size=0.33, random_sta
 
 # verilerin olceklenmesi Simdilik standart scaler yaptik
 
+
+"""
+Makine ogrenmesinde Standart Scaler, veri onisleme adimlarindan biridir ve ozellik olceklendirmesini gerçeklestirmek icin kullanilir. 
+Veri setindeki ozelliklerin farkli olceklere sahip olmasi durumunda, bazi makine ogrenmesi algoritmalari bu durumdan olumsuz etkilenebilir. 
+Standart Scaler, ozellikleri olceklendirerek veri setindeki ozelliklerin ayni olcekte olmasini saglar.
+
+Standart Scaler, her bir ozelligi aşagidaki islemleri uygulayarak olceklendirir:
+
+Oncelikle, her bir ozelligin ortalamasi (mean) cikarilir. Bu, ozelligin her bir veri noktasindan ortalamayi çikararak merkezlemesini saglar. Sonuc olarak, ozelligin ortalamasi 0 olur.
+
+Ardindan, her bir özelligin standart sapmasi (standard deviation) kullanilarak olceklendirme yapilir. Bu, ozelligin her bir veri noktasini standart sapmaya boler. Bu islem sonucunda, ozelligin varyansi 1 olur.
+
+Bu islemler sonucunda, veri setindeki her bir ozellik standart normal dagilima (ortalama 0, standart sapma 1) donuşmuş olur.
+Standart Scaler, bu donusumu her bir ozellige uygulayarak veri setini yeniden olceklendirir.
+    
+"""
+
 sc = StandardScaler()
 
 X_train = sc.fit_transform(x_train)

@@ -574,7 +574,30 @@ YAPAY SİNİR AĞLARI: ARTIFICIAL NEURAL NETWORK:
 
 - İleri Yayılım (Forward Propagation)
 		
+BOYUT İNDİRGEME 
 
+	PCA:
+		Kullanım alanları: Gürültü filtreleme, Görselleştirme, Öznitelik çıkarımı
+				   Öznitelik eleme dönüştürme, Sinyal işleme, Görüntü işleme 
+		Boyut dönüştürme olarak tanımlanabilir. Tabi boyutlar dönüştürülürken veriler kaybolabilir
+		Eigen value Öz değer ve Eigen vector Öz vektör burada hatırlanması gereken iki kavramdır.
+		Bir örnekle hatırlayalım:
+		Bir matris için özdeğer ve özvektör sayısı birden fazla olabilir.
+		[1 2 0]   [1]   [3]      [1] 	A*v = x*v x: özdeğer v:özvektör
+		[0 1 2] * [1] = [3] = 3* [1]   Bu matris için 3 öz değer
+		[1 0 2]	  [0]   [0]	 [0]      1,1,0 ise özvektördür
+
+		projeksiyon matrisi w:bir vektörün bir uzaydaki yansımasını temsil eden bir kare matristir. (ayrıntı https://medium.com/kaveai/matemati%C4%9Fi-ve-python-uygulamas%C4%B1yla-lineer-regresyon-normal-denklem-dd38c43e0941)
+
+		Algoritma Adımları:
+		 *İndirgenmek istenen boyut k olsun
+		 Veri standartlaştırılır.
+		 Kovaryans veya korelasyon matrisinden öz değerler ve öz vektörler elde edilir Veya SVD kullanılır. (SVD: singular value decomposition)
+		 Özdeğerler büyükten küçüğe sıralanır k tanesi alınır.
+		 Seçilen k özdeğerden w projeksiyon matrisi oluşturulur.
+		 Orijinal veri kümesi X w kullanılarak dönüştürülür.
+		 K boyutlu Y uzayı elde edilir.
+		
 
 
 
