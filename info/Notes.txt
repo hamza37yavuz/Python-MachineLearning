@@ -599,6 +599,16 @@ BOYUT İNDİRGEME
 		 K boyutlu Y uzayı elde edilir.
 		
 
+	LDA: LINEAR DISCRIMINANT ANALYSIS
+		PCA benzeri bir boyut donusumu yapar. Fakat gözetimli bir şekilde bu işi yapar.
+		Yani PCA gözetimsiz bir indirgeme yaparken LCA gözetimli olarak yapar.
+		LDA sınıf farklarını ve etiketleri göz önüne alarak indirgeme yapar.
+		LDA'de amaç sınıfları birbirinden ayıran en iyi boyutu bulmaktır
+		PCA'de ama ç verileri birbirinden ayıran en faydalı boyutu bulmaktır.
+		Şu makaleyi oku https://sebastianraschka.com/Articles/2014_python_lda.html
+		Algoritma adımları aslında PCA dan çok farklı değildir.
+		En büyük fark ilk adımında olur. Ayrıntılı bilgi için yuykarıdaki makaleyi okuyabilirisiniz.
+		
 
 
 
