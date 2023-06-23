@@ -10,9 +10,9 @@ REGRESSION
 	-Boy = a + b(kilo) + c(ayakkabi no) seklinde yazilabilir.
 
 	*Dummy variable
-	-Dummy variable daha önce kullanilan ve kategorize edilen bir sutunun birden fazlakere kullanimina verilen isim
-	bu kullanimdan cogu yapay zeka modeli etkilenmektedir.
-	ama birden fazla veri varsa kategorize edildiyse ornegin bir kisinin nereli olduguyla ilgili olabilir.
+	-Dummy variable daha önce kullanilan ve kategorize edilen bir sutunun birden fazla kere kullanimina verilen isim
+	bu kullanimdan yapay zeka modelleri etkilenmektedir.
+	ama birden fazla veri varsa kategorize edilmelidir. ornegin bir kisinin nereli olduguyla ilgili olabilir.
 	bu durumda kategorize edilen tum sutunlar kullanilmalidir
 
 	*p-value
@@ -29,96 +29,95 @@ REGRESSION
 	-Cok degiskenli modellerde her degisken ayni oranda mi sonucu etkiliyor?
 	-Degisken secimi nasil yapilmali
 	
--1* Butun Degiskenleri Dahil Etmek
-       -Butun degiskenler sisteme dahil edilir ve sonuc degerlendirilir.
-       -Bu yontem :
-           degisken secimi yapildiysa
-           zorunluluk varsa
-           kesif icin (hangi yontemi kullanmaliyim)
-       kullanilabilir
+	1* Butun Degiskenleri Dahil Etmek
+       		-Butun degiskenler sisteme dahil edilir ve sonuc degerlendirilir.
+       		-Bu yontem :
+       		  degisken secimi yapildiysa
+                  zorunluluk varsa
+           	  kesif icin (hangi yontemi kullanmaliyim)
+       		kullanilabilir
         
-2* Geriye Dogru Eleme (Backward Elimination) (stepwise yaklaşım)
-       a) Butun degiskenler dahil edilerek  bir model insa edilir Model başarı testi yapılır
-       b) Signifacance Level SL seçilir genelde 0.05
-       c) En yüksek p-value değerine sahip olan değişken ele alınır 
-		şayet P>SL ise bir sonraki adıma değilse son adıma gidilir
-       d) Bu aşamada bir önceki adımda seçilen ve en yüksek p değerine sahip değişken sistemden kaldırılır.
-       e) Makine öğrenmesi güncellenir ve c ye geri dönülür.
-       f) Makine öğrenmesi sonlandırılır
+	2* Geriye Dogru Eleme (Backward Elimination) (stepwise yaklaşım)
+       		a) Butun degiskenler dahil edilerek  bir model insa edilir Model başarı testi yapılır
+       		b) Signifacance Level SL seçilir genelde 0.05
+       		c) En yüksek p-value değerine sahip olan değişken ele alınır 
+			şayet P>SL ise bir sonraki adıma değilse son adıma gidilir
+       		d) Bu aşamada bir önceki adımda seçilen ve en yüksek p değerine sahip değişken sistemden kaldırılır.
+       		e) Makine öğrenmesi güncellenir ve c ye geri dönülür.
+       		f) Makine öğrenmesi sonlandırılır
 
-3* Ileri Secim (Forward Selection)
-       a) Butun degiskenler dahil edilerek  bir model insa edilir Model başarı testi yapılır
-       b) Signifacance Level SL seçilir genelde 0.05
-       c) En düşük p-value değerine sahip olan değişken ele alınır 
-       d) Bir önceki adımda seçilen değişken sabit tutularak bir değişken daha seçilir
-		ve sisteme eklenir	
-       e) Makine öğrenmesi güncellenir ve c ye geri dönülür. Şayet en düşük p-değere sahip değişken için
-		p<SL sağlanıyorsa c ye dönülür sağlamıyorsa diğer adıma geçilir
-       f) Makine öğrenmesi sonlandırılır
+	3* Ileri Secim (Forward Selection)
+       		a) Butun degiskenler dahil edilerek  bir model insa edilir Model başarı testi yapılır
+       		b) Signifacance Level SL seçilir genelde 0.05
+       		c) En düşük p-value değerine sahip olan değişken ele alınır 
+       		d) Bir önceki adımda seçilen değişken sabit tutularak bir değişken daha seçilir
+			ve sisteme eklenir	
+       		e) Makine öğrenmesi güncellenir ve c ye geri dönülür. Şayet en düşük p-değere sahip değişken için
+			p<SL sağlanıyorsa c ye dönülür sağlamıyorsa diğer adıma geçilir
+       		f) Makine öğrenmesi sonlandırılır
 
-4* Iki Yonlu Secim (Bidirectional Elimination) 	 ileriye ve geriye doğru eleem beraber çalışır 
-       a) Butun degiskenler dahil edilerek  bir model insa edilir Model başarı testi yapılır
-       b) Signifacance Level SL seçilir genelde 0.05
-       c) En düşük p-value değerine sahip olan değişken ele alınır 
-       d) Bir önceki adımda seçilen değişken sabit tutularak bütün değişkenler sisteme dahil edilir
-		ve en düşük p değerine sahip olan sistemde kalır.	
-       e) SL değerinin altında olan değişkenler sistemde kalır.
-		eski değişkenlerden hiçbirisi sistemden çıkarılmaz
-       f) Makine öğrenmesi sonlandırılır
+	4* Iki Yonlu Secim (Bidirectional Elimination) 	 ileriye ve geriye doğru eleem beraber çalışır 
+       		a) Butun degiskenler dahil edilerek  bir model insa edilir Model başarı testi yapılır
+       		b) Signifacance Level SL seçilir genelde 0.05
+       		c) En düşük p-value değerine sahip olan değişken ele alınır 
+       		d) Bir önceki adımda seçilen değişken sabit tutularak bütün değişkenler sisteme dahil edilir
+			ve en düşük p değerine sahip olan sistemde kalır.	
+       		e) SL değerinin altında olan değişkenler sistemde kalır.
+			eski değişkenlerden hiçbirisi sistemden çıkarılmaz
+       		f) Makine öğrenmesi sonlandırılır
 
-5* Skor Karsilastirma (Score Comparison)
-	bir başarı kriteri belirleyerek bütün olası modeller inşa edilir.
-	başta belirlenen kriteri en iyi sağlayan yöntem seçilir
-	makine öğrenmesi sonlandırılır.
-1 ve 5 bizim aklimiza gelecek yada deneyecegimiz seyler arasinda sayilabilir.
+	5* Skor Karsilastirma (Score Comparison)
+		a) Bir başarı kriteri belirleyerek bütün olası modeller inşa edilir.
+		b) Başta belirlenen kriteri en iyi sağlayan yöntem seçilir
+		c) Makine öğrenmesi sonlandırılır.
 
 	*POLİNOMAL REGRESYON
-	-Aynı değişkenin farklı katsayılar ve üs değerleri ile parabolik bir eğri oluşturduğunu göserir
-	-eğrileri tahmin etmede kullanacağımız yöntemi barındırır.
+	- Aynı değişkenin farklı katsayılar ve üs değerleri ile parabolik bir eğri oluşturduğunu göserir.
+	- Eğrileri tahmin etme sırasında kullanacağımız yöntemi barındırır.
 
 	*SUPPORT VECTOR REGRESSION SVM (MACHINE)
 	*DESTEK VEKTÖRÜ
-normalde iki tane sınıfı ayırmak için kullanılan metot iki kümenin maksimum aralıkla birbirinden ayırma
-regresyonda maksimun noktayı içine alacak şekilde bir aralık oluşturmak için de kullanılır
-aralık ne kadar küçükse regression o kadar sağlıklı olur
-doğrusal olmayıp bu tahmin metodu kullanılan fonksiyonlar
-doğrusal olan , doğrusal olmayan
-Linear re	exponential
+	-Normalde iki tane sınıfı ayırmak için kullanılan metot iki kümenin maksimum aralıkla birbirinden ayırma
+		ve regresyonda maksimun noktayı içine alacak şekilde bir aralık oluşturmak için de kullanılır.
+	-Aralık ne kadar küçükse regression o kadar sağlıklı olur
+	-Doğrusal olmayıp bu tahmin metodu kullanılan fonksiyonlar
+	
+	Doğrusal olan , doğrusal olmayan
+	Linear re	exponential
 		RBF gaussian 
 		polynomial
 
 	*Karar Ağacı DECISION TREE
-	2 boyutlu uzayda bir karar ağacı oluşturulur.
-	verileri dağılımına göre bölmeler oluşturulur.
-	oluşturulan bölmelerin train kümesinden ortalamalar yardımıyla tahminler yapılır
-	bu algoritmanın daha hassas olması gerekiyorsa bölüm sayısının artırılması gerekir
+	- 2 Boyutlu uzayda bir karar ağacı oluşturulur.
+	- Verilerin dağılımına göre bölmeler oluşturulur.
+	- Oluşturulan bölmelerin train kümesinden ortalamalar yardımıyla tahminler yapılır
+	- Bu algoritmanın daha hassas olması gerekiyorsa bölüm sayısının artırılması gerekir
 
 	*RANDOM FOREST rassal ağaçlar
-	Ensemble Learning kollektif öğrenme birden fazla model kullanma
-	öğrenme 1 den fazla karar ağacı için aynı veri kümesiüzerine çizilmesi ve kullanılması
-	veri karar ağacı kullanılarak bölümlere ayrılır ve ayrılan bölümler bir daha parçalara ayrılarak bundan yararlanma
-	bu ayrılan küçük ağaçlar arasında ortalamalardan faydalanılarak tahmin işlemi yapılabilir
-	nasıl birleştirileceği ile ilgili yeni yöntemler vardır.
-	karar ağaçlarında tüm değerleri alma bazen hatalar artar.
-	bunu sebepleri - tümünü öğrenirse ezberler overfitting olur
-	       - çok veri alırsa ağaç çok dallanır bu da işlem hızını düşürür
+	- Ensemble Learning kollektif öğrenme birden fazla model kullanma anlamlarına gelir.
+	- Veri karar ağacı kullanılarak bölümlere ayrılır ve ayrılan bölümler bir daha parçalara ayrılarak bundan yararlanılır.
+	- Bu ayrılan küçük ağaçlar arasında ortalamalardan faydalanılarak tahmin işlemi yapılabilir
+	- Nasıl birleştirileceği ile ilgili yeni yöntemler vardır.
+	- Karar ağaçlarında tüm değerlerin alınması bazen hataları artırabilir.
+	- Bunu sebepleri: - tümünü öğrenirse ezberler overfitting olur
+	       		  - çok veri alırsa ağaç çok dallanır bu da işlem hızını düşürür
 
 Regresyon Yöntemlerini Karşılaştırma Evaluation of Predictions
 
-	R Square Metodu   
+	*R Square Metodu   
 	
-	hata kareleri toplamı topla(veri-tahminiveri)^^2
-	ortalama farkların toplamı topla(veri-veriort)^^2
-	R^^2 = 1-HKT/OFT
-	bu deger R^^2 degeri 0 gelirse aptal bir algoritma olduğunu söyler
-	0 ise degerlerin ortalamasının tümdegerlerle ayni oldugunu söylersek R^^2 = 0 olur
-	eger R^^2 - degerler alabilir ama - cıkarsa bu modelin kötülügünü gösterir
-	eger R^^2 = 1 ise mükemmel bir algoritma oldugunu söyler gerçek dünyada 1 görme ihitimalimiz ancak hata yaptıysak vardır
+	- hata kareleri toplamı : topla(veri-tahminiveri)^^2
+	- ortalama farkların toplamı : topla(veri-veriort)^^2
+	- R^^2 = 1-HKT/OFT
+	- R^^2 degeri 0 gelirse aptal bir algoritma olduğunu söylenir.
+	- Çünkü 0 ise degerlerin ortalamasının tüm degerlerle ayni olması gerekir.
+	- R^^2 negatif degerler alabilir ama negatif cıkması modelin kötülügünü gösterir.
+	- Eger R^^2 = 1 ise mükemmel bir algoritma oldugunu söyler gerçek dünyada 1 görme ihitimalimiz yoktur.
+______________________________________________________________________________________________________________________	
+	*Düzeltilmiş(ADJUSTED) R Square Metodu
 	
-	Düzeltilmiş(ADJUSTED) R Square Metodu
-	
-	yöntemleri karşılaştıralım : yaptigimiz bazi olumlu calismalari maskeleyebilir.
-	yani modelimizin ne kadar geliştiğini görmemizi engelleyebilir. örnek multi lineer regresyon yapalım
+	- Yöntemleri karşılaştıralım : yaptigimiz bazi olumlu calismalari maskeleyebilir.
+	Yani modelimizin ne kadar geliştiğini görmemizi engelleyebilir. örnek multi lineer regresyon yapalım
 	bu regresyonda yeni bir değişken eklemesi yapıldığını varsayalım. bu ekleme yapıldığında carpan 0 olarak alinir.
 	bu carpan 0 olarak alinir ve şayet negatif etkisi varsa R^^2 degeri degismez.
 	düzeltilmiş R^^2=1-(1-R^^2)(n-1)/(n-p-1) yukarıda yazdığımız problemi çözme bu şekilde saglanir.
@@ -302,36 +301,36 @@ KÜMELEME BÖLÜTLEME
 	-bunu scikitlearn sitesinden alabilirsin
 	
 	*HIERARCHICAL CLUSTERING
-	-Agglomerative
-	Aşağıdan yukarıya 
-	Her veri tek bi küme bölüt ile başlar
-	En yakın ikişer komşuyu alıp ikişerli küme oluşturulur.
-	En yakın iki kümeyi alıp yeni küme oluşturulur
-	Tek bir bölüt küme oluncaya kadar devam eder
-	İçerisindeki sınıf yapılarıkaybolmaz
+	**Agglomerative
+	-Aşağıdan yukarıya 
+	-Her veri tek bi küme bölüt ile başlar
+	-En yakın ikişer komşuyu alıp ikişerli küme oluşturulur.
+	-En yakın iki kümeyi alıp yeni küme oluşturulur
+	-Tek bir bölüt küme oluncaya kadar devam eder
+	-İçerisindeki sınıf yapılarıkaybolmaz
 
-	-Divisive
-	Yukarıdan aşağıya sınıflandırma şeklinde olur
-	bütün veriler bir küme olarak kabul edilir.
-	birbirine yakın olan noktalar kümelenir son tek nokta kümeye eklendiğinde biter
+	**Divisive
+	-Yukarıdan aşağıya sınıflandırma şeklinde olur
+	-Bütün veriler bir küme olarak kabul edilir.
+	-Birbirine yakın olan noktalar kümelenir son tek nokta kümeye eklendiğinde biter
 	
 	-Mesafe Ölçümü bir problemdir
 	mesafeler distance matrix ile gösterilebilir.
 	-Referanslar farklı bir problem 
 	referans olarak en yakın noktalar alınabilir.
-	en uzak noktalar hesaplanabilir.
-	kümenin orta noktası referans alabilir.
+	En uzak noktalar hesaplanabilir.
+	Kümenin orta noktası referans alabilir.
 
-	-Dendogram
-	Tüm noktaların yazılı olduğu ve aralarındaki mesafye göre yerleştirilmiş tablo yapısı
-	bu tablo yapısına göre hiyerarşik bölütleme görülmesi kolaylaşır
-	kullanıcının istediği kadar bölüt oluşturma imkanı sağlanır.
-	en optimum yapıyı elde etmek için dendogramın en uzun olduğu bölmeye bakılabilir
+	**Dendogram
+	-Tüm noktaların yazılı olduğu ve aralarındaki mesafye göre yerleştirilmiş tablo yapısı
+	-Bu tablo yapısına göre hiyerarşik bölütleme görülmesi kolaylaşır.
+	-Kullanıcının istediği kadar bölüt oluşturma imkanı sağlanır.
+	-En optimum yapıyı elde etmek için dendogramın en uzun olduğu bölmeye bakılabilir
 	
-	WARD METHOD 
-	her bölütün başka bir bölüte uzaklığı
-	wcc değeri hesaplama yöntemini kullanır.
-	ward methodu kullanılarak da optimum model bulunabilir.
+	*WARD METHOD 
+	-Her bölütün başka bir bölüte uzaklığı
+	-Wcc değeri hesaplama yöntemini kullanır.
+	-Ward methodu kullanılarak da optimum model bulunabilir.
 
 BİRLİKTELİK KURAL ÇIKARIMI ASSOCIATION RULE MINING LEARNING
 	Alışveriş sepetinden ortaya çıktığı düşünülebilir
@@ -572,7 +571,7 @@ YAPAY SİNİR AĞLARI: ARTIFICIAL NEURAL NETWORK:
 
 
 
-- İleri Yayılım (Forward Propagation)
+* İleri Yayılım (Forward Propagation)
 		
 BOYUT İNDİRGEME 
 
@@ -609,9 +608,32 @@ BOYUT İNDİRGEME
 		Algoritma adımları aslında PCA dan çok farklı değildir.
 		En büyük fark ilk adımında olur. Ayrıntılı bilgi için yuykarıdaki makaleyi okuyabilirisiniz.
 		
+Probleme Göre Model Nasıl Seçilmeli:
 
+	Modellerin başarısı, parametrelere bağlıdır.
+	Makine öğrenmesi parametreleri optimize etmez.
+	Model seçiminden önce dikkat edilmesi gereken ilk nokta model değerlendirilmesidir (evalution)
+	Şimdiye kadar test kümesindeki başarıyı ölçtük. (split validation yaptık)
+	Veri bölündükten sonra makine öğrenmesinin uygunluğuna bakıyorduk artık öyle değil !!
+	Yeni terimler: K-fold cross validation (k-katlamalı çarpraz doğrulama), Grid Search (Izgara Araması)
+		Problemin tipine göre model seçimi için kullanılan algoritma farklılık gösterebilir.
+	Bağımlı değişken var olması da önemli bir ölçüttür. Eğer bağımlı değişken yoksa gözetimsiz öğrenme olacağı söylenebilir.
+	Bağımlı değişken yoksa sınıflandırma ya da regresyon olacaktır.
+	Buradan sonra bağımlı değişken kategorik mi sürekli sayı mı da önemli bir ölçüttür.
+	Doğrusal olan ya da doğrusal olmayan şeklinde ayrım yapılması da önemlidir.
 
-
-
-
+	**K-Fold Cross Validation (k-katlamalı çarpraz doğrulama):
+	     Cross validation n-fold ifadesinde n = 4 olsun.
+	     İlk olarak veriyi +++- şeklinde - test kümesi + lar ise train kümesi olarak ayırır. Başarı oranını hesaplar.
+	     Sonra ++-+ şeklinde tekrar başarı oranını hesaplar. +-++ olarak tekrar hesaplar. -+++ olarak tekrar hesaplar.
+	     Bu hesaplamalarda bulduğu değerlere göre karar verir. Bu kısımdan sonra bu algoritmanın farklı varyasyonları vardır.
+	     Karar mekanizması değerler ortalamasına bağlı olarak, minimum değeri alarak ya da farklı bir şekilde olabilir.
+	     Buradaki n değerine bağlı olarak veri n kez gezilir.
+	     Bu algoritma çoğunlukla sınıflandırma algoritmaları için kullanılır.
+	   
+	
+	** Grid Search
+	     Çalıştırdığımız algoritmanın alacağı parametrelerin optimize edilmesi de öenmlidir.
+	     Bu kısım kod üzerinden bakacağız.
+	      
 	
