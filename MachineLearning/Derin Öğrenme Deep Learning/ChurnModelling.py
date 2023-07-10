@@ -77,7 +77,7 @@ classifier = Sequential() #yapay sinir agini olusturduk
 # activation function ne olacak biz relu dedik
 # giristeki katmanda ne var
 # 6 norondan olusan gizli katman olusturalım
-classifier.add(Dense(units=6,kernel_initializer = "glorot_uniform",activation="relu",input_dim=11,))
+classifier.add(Dense(units=6,kernel_initializer = "glorot_uniform",activation="relu",input_dim=11))
 
 # 6 norondan olusan bir gizli katman daha olusturalım
 classifier.add(Dense(units=6,kernel_initializer = "glorot_uniform",activation="relu"))
