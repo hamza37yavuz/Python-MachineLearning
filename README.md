@@ -9,7 +9,7 @@ Bu README dosyası, Python ile Makine Öğrenmesi kursunun amacını, içeriğin
 
 [Matplotlib Kütüphanesi Notlar](https://github.com/hamza37yavuz/Python-MachineLearning/blob/master/info/MatplotlibGiris.py)
 
-[Kurstan Notlar](https://github.com/hamza37yavuz/Python-MachineLearning/blob/master/info/MatplotlibGiris.py)
+[Kurstan Notlar](https://github.com/hamza37yavuz/Python-MachineLearning/blob/master/info/README.txt)
 
 ### VERİ SETLERİ VE KODLAR
 #### REGRESYON
