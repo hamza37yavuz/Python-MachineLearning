@@ -1,110 +1,94 @@
-# -*- coding: utf-8 -*-
-"""
-Spyder kullanildi
-"""
 # MATPLOTLIB
 import numpy as np
 import matplotlib.pyplot as plt
-
-# GRAFIK OLUSTURMA
-yas = [10,22,30,40,50,60,65,70,75,80]
-kilo = [30,70,80,85,90,92,95,100,90,85]
-# numpy dizisine donusturelim
-yas = np.array(yas)
-kilo = np.array(kilo)
-# Simdi grafige bakalim
-plt.plot(yas,kilo,"r")
-# Grafikte diger islemler
-plt.xlabel("Yas")
-plt.xlabel("Kilo")
-plt.title("Yasa Gore Kilo Degisimi")
-# diger ornek
+# CREATING A GRAPH
+age = [10,22,30,40,50,60,65,70,75,80]
+weight = [30,70,80,85,90,92,95,100,90,85]
+# convert to numpy array
+age = np.array(age)
+weight = np.array(weight)
+# Let's look at the graph
+plt.plot(age,weight,"r")
+# Other operations on the graph
+plt.xlabel("Age")
+plt.xlabel("Weight")
+plt.title("Weight Change by Age")
+# another example
 x = np.arange(0, 5, 0.1)
 y = np.sin(x)
 fig, ax = plt.subplots()
 ax.plot(x, y)
-
-# OZELLESTİRME
-
-numpyDizisi1 = np.linspace(0,10,20)
-numpyDizisi2 = numpyDizisi1**3
+# CUSTOMIZATION
+numpyArray1 = np.linspace(0,10,20)
+numpyArray2 = numpyArray1**3
 """
-plt.plot(dizi1,dizi2,"g--")
-#simdi ayni ekranda iki tane grafik gorelim
-plt.subplot(1,2,1) # 1 satir 2 grafikten 1. grafik
-plt.plot(dizi1,dizi2,"g--") # bu grafik bir onceki satirda verildigi yere gelir
+plt.plot(array1,array2,"g--")
+# now let's see two graphs on the same screen
+plt.subplot(1,2,1) # 1st graph out of 2 graphs in 1 row
+plt.plot(array1,array2,"g--") # this graph goes to the position given in the previous line
 plt.subplot(1,2,2)
-plt.plot(dizi1,dizi2,"g*-")
+plt.plot(array1,array2,"g*-")
 # figure
-myFigure = plt.figure() # instance aldik
-# burada 0.2 sol taraftaki eksenin baslangic noktasi, 0.2 alt taraftaki eksenin baslangic noktasi
-figureAxess = myFigure.add_axes([0.4,0.4,0.6,0.6]) # son iki indis with ve height degerleridir
-figureAxess.plot(dizi1,dizi2,"g") # dizi baslangici
-#Diger islemler
-figureAxess.set_xlable("X Ekseni Veri Ismi")
-figureAxess.set_ylable("Y Ekseni Veri Ismi")
-figureAxess.set_title("Grafik Basligi")
+myFigure = plt.figure() # created an instance
+# here 0.2 is the starting point of the left axis, 0.2 is the starting point of the bottom axis
+figureAxes = myFigure.add_axes([0.4,0.4,0.6,0.6]) # last two indices are width and height values
+figureAxes.plot(array1,array2,"g") # array start
+# Other operations
+figureAxes.set_xlabel("X Axis Data Name")
+figureAxes.set_ylabel("Y Axis Data Name")
+figureAxes.set_title("Graph Title")
 """
-
-#OZELLESTIRME 2
+# CUSTOMIZATION 2
 """
 figure2 = plt.figure()
-# alt satirda yer alan birinci 0.1 degeri grafiğin x eksenindeki konumunu
-# ikinci 0.1 grafiğin y eksenindeki konumunu belirler.
-eksen1 = figure2.add_axes([0.1,0.1,0.7,0.7])
-eksen2 = figure2.add_axes([0.3,0.3,0.3,0.3])
-
-eksen1.plot(dizi1,dizi2,"b")
-eksen1.set_xlable("X Ekseni")
-eksen1.set_ylable("Y Ekseni")
-eksen1.set_title("Ana Grafik Basligi")
-
-eksen2.plot(dizi2,dizi1,"b")
-eksen2.set_xlable("Kucuk X Ekseni")
-eksen2.set_ylable("Kucuk Y Ekseni")
-eksen2.set_title("Kucuk Grafik Basligi")
+# in the line below, the first 0.1 value determines the graph's position on the x axis
+# and the second 0.1 determines the graph's position on the y axis
+axis1 = figure2.add_axes([0.1,0.1,0.7,0.7])
+axis2 = figure2.add_axes([0.3,0.3,0.3,0.3])
+axis1.plot(array1,array2,"b")
+axis1.set_xlabel("X Axis")
+axis1.set_ylabel("Y Axis")
+axis1.set_title("Main Graph Title")
+axis2.plot(array2,array1,"b")
+axis2.set_xlabel("Small X Axis")
+axis2.set_ylabel("Small Y Axis")
+axis2.set_title("Small Graph Title")
 """
-# OZELLESTIRME 3
+# CUSTOMIZATION 3
 """
-# eger subplots'un içine deger yazmasaydim eksen tuple olacakti
-(myFigure, eksenler) = plt.subplots(1,2)
-print(type(eksenler)) # artik bu bir array
-for eksen in eksenler:
-    eksen.plot(dizi1,dizi2,"g")
-    eksen.set_xlable("X Ekseni")
+# if we didn't pass any values to subplots, the axes would be a tuple
+(myFigure, axes) = plt.subplots(1,2)
+print(type(axes)) # now this is an array
+for axis in axes:
+    axis.plot(array1,array2,"g")
+    axis.set_xlabel("X Axis")
 plt.tight_layout()
 """
-# AYRINTILAR VE DOSYAYI KAYDETME
+# DETAILS AND SAVING THE FILE
 """
 newFigure = plt.figure()
-# bir üst satirda dpi değeri verilebilir
-grafik = newFigure.add_axes([0.1,0.1,0.9,0.9])
-grafik.plot(dizi1,dizi1**2,label = "Dizinin karesi")
-grafik.plot(dizi1,dizi2,label = "Dizinin küpü")
-grafik.legend(loc = 6)
-newFigure.savefig("figure.png",dpi = 200) # piksel kalitesiile ilgili deger 
+# dpi value can be given in the line above
+graph = newFigure.add_axes([0.1,0.1,0.9,0.9])
+graph.plot(array1,array1**2,label = "Square of the array")
+graph.plot(array1,array2,label = "Cube of the array")
+graph.legend(loc = 6)
+newFigure.savefig("figure.png",dpi = 200) # value related to pixel quality
 """
-# ILERI SEVİYE
-# renk kullanimi
-(yeniFigur, yeniEksen) = plt.subplots()
-yeniEksen.plot(numpyDizisi1, numpyDizisi1 + 2, color="blue", linewidth = 1.0)
-yeniEksen.plot(numpyDizisi1, numpyDizisi1 + 3, color ="yellow", linewidth = 1.0)
-
-yeniEksen.plot(numpyDizisi1, numpyDizisi1 + 4, color = "#C96F23", linestyle = "-.")
-yeniEksen.plot(numpyDizisi1, numpyDizisi1 + 5, color = "#C96F23", linestyle = ":")
-yeniEksen.plot(numpyDizisi1, numpyDizisi1 + 6, color = "#C96F23", linestyle = "--")
-
-yeniEksen.plot(numpyDizisi1, numpyDizisi1 + 7, color = "#000000", linestyle = "--", marker = "o",markersize = 8, markerfacecolor="red")
-yeniEksen.plot(numpyDizisi1, numpyDizisi1 + 8, color = "#000000", linestyle = "-")
-
+# ADVANCED
+# color usage
+(newFigure, newAxis) = plt.subplots()
+newAxis.plot(numpyArray1, numpyArray1 + 2, color="blue", linewidth = 1.0)
+newAxis.plot(numpyArray1, numpyArray1 + 3, color ="yellow", linewidth = 1.0)
+newAxis.plot(numpyArray1, numpyArray1 + 4, color = "#C96F23", linestyle = "-.")
+newAxis.plot(numpyArray1, numpyArray1 + 5, color = "#C96F23", linestyle = ":")
+newAxis.plot(numpyArray1, numpyArray1 + 6, color = "#C96F23", linestyle = "--")
+newAxis.plot(numpyArray1, numpyArray1 + 7, color = "#000000", linestyle = "--", marker = "o",markersize = 8, markerfacecolor="red")
+newAxis.plot(numpyArray1, numpyArray1 + 8, color = "#000000", linestyle = "-")
 # SCATTER
-plt.scatter(numpyDizisi1,numpyDizisi2)
-
+plt.scatter(numpyArray1,numpyArray2)
 # HISTOGRAM
 newArray = np.random.randint(0,100,50)
 plt.hist(newArray)
-
 # BOXPLOT
 plt.boxplot(newArray)
-
-# Matplotlib websitesinden tutoriallarin ustunden gecebiliriz
+# We can go through the tutorials on the Matplotlib website
