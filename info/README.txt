@@ -1,832 +1,830 @@
-						MAKİNE ÖĞRENMESİ (NOTLAR)
+MACHINE LEARNING (NOTES)
 
-NOT:
--Bu notlar MachineLearning klasöründe yer alan konuları başlıklar halinde açıklamak özet geçmek maksadıyla oluşturulmuştur. 
+NOTE:
+-These notes have been created to explain and summarize the topics found in the MachineLearning folder under their respective headings.
 
-REGRESYON REGRESSION
+REGRESSION
 
-	*Coklu Dogrusal Regresyon
+    *Multiple Linear Regression
 
-	-basit dogrusall regresyonda y = a + bx + e seklinde yazilabilir
-	-e: hata orani anlamina gelir. Coklu dogrusal regresyonda birden fazla b degeri vardir.
-	-b1x1+b2x2+.... şeklinde y yi etkileyen b degerleri yazilabilir bu regresyon modelinde her x degeri icin degisen bir e degeri vardir.
-	-Boy = a + b(kilo) + c(ayakkabi no) seklinde yazilabilir.
+    -In simple linear regression it can be written as y = a + bx + e
+    -e: means error rate. In multiple linear regression there are more than one b values.
+    -b1x1+b2x2+.... the b values affecting y can be written this way. In this regression model there is a different e value for each x value.
+    -It can be written as Height = a + b(weight) + c(shoe size).
 ----------------------------------------------------------------------------
-	*Dummy variable
-	-Dummy variable daha önce kullanilan ve kategorize edilen bir sutunun birden fazla kere kullanimina verilen isim
-	-Bu kullanimdan yapay zeka modelleri olumsuz etkilenmektedir.
-	-Birden fazla veri varsa kategorize edilmelidir. ornegin bir kisinin nereli olduguyla ilgili olabilir.
-	-Bu durumda kategorize edilen tum sutunlar kullanilmalidir
+    *Dummy Variable
+    -Dummy variable is the name given to the multiple usage of a previously used and categorized column.
+    -AI models are negatively affected by this usage.
+    -If there are multiple data points they should be categorized. For example it could be about where a person is from.
+    -In this case all categorized columns should be used.
 ----------------------------------------------------------------------------
-	*p-value
-	H0 : null hypothesis sıfır hipotezi bos hipotez farksizlik hipotezi
-	H1 : Alternatif hipotez
-	p degeri : olasilik degeri genelde 0.05
-	P degeri kuculdukce H0 hatali olma ihtimali artar
-	P degeri buyudukce H1 hatali olma ihtimali artar
-	H0 : Ornek : ders calisma saati artarsa basarili olunabilir varsayimi
-	H1 : Ornek : ders calisma saati artarsa basarili olunmayabilir varsayimi
-	ne kadar H1 olursa H0 curutulebilir onu anlatan deger p degeri olur
- ----------------------------------------------------------------------------
-	*Degisken Secimi
-	-Cok degiskenli modellerde her degisken ayni oranda mi sonucu etkiliyor?
-	-Degisken secimi nasil yapilmali
-	
-	1* Butun Degiskenleri Dahil Etmek
-       		-Butun degiskenler sisteme dahil edilir ve sonuc degerlendirilir.
-       		-Bu yontem :
-       		  degisken secimi yapildiysa
-                  zorunluluk varsa
-           	  kesif icin (hangi yontemi kullanmaliyim)
-       		kullanilabilir
-        
-	2* Geriye Dogru Eleme (Backward Elimination) (stepwise yaklaşım)
-       		a) Butun degiskenler dahil edilerek  bir model insa edilir Model başarı testi yapılır
-       		b) Signifacance Level SL seçilir genelde 0.05
-       		c) En yüksek p-value değerine sahip olan değişken ele alınır 
-			şayet P>SL ise bir sonraki adıma değilse son adıma gidilir
-       		d) Bu aşamada bir önceki adımda seçilen ve en yüksek p değerine sahip değişken sistemden kaldırılır.
-       		e) Makine öğrenmesi güncellenir ve c ye geri dönülür.
-       		f) Makine öğrenmesi sonlandırılır
+    *p-value
+    H0: null hypothesis
+    H1: alternative hypothesis
+    p value: probability value, generally 0.05
+    As the p value decreases the probability of H0 being incorrect increases.
+    As the p value increases the probability of H1 being incorrect increases.
+    H0: Example: the assumption that if study hours increase, success can be achieved.
+    H1: Example: the assumption that if study hours increase, success may not be achieved.
+    The more H1 occurs the more H0 can be refuted, and the value that describes this is the p value.
+----------------------------------------------------------------------------
+    *Variable Selection
+    -In multi-variable models, does every variable affect the result at the same rate?
+    -How should variable selection be done?
 
-	3* Ileri Secim (Forward Selection)
-       		a) Butun degiskenler dahil edilerek  bir model insa edilir Model başarı testi yapılır
-       		b) Signifacance Level SL seçilir genelde 0.05
-       		c) En düşük p-value değerine sahip olan değişken ele alınır 
-       		d) Bir önceki adımda seçilen değişken sabit tutularak bir değişken daha seçilir
-			ve sisteme eklenir	
-       		e) Makine öğrenmesi güncellenir ve c ye geri dönülür. Şayet en düşük p-değere sahip değişken için
-			p<SL sağlanıyorsa c ye dönülür sağlamıyorsa diğer adıma geçilir
-       		f) Makine öğrenmesi sonlandırılır
+    1* Include All Variables
+        -All variables are included in the system and the result is evaluated.
+        -This method can be used:
+          if variable selection was done
+          if it is mandatory
+          for exploration (which method should I use)
 
-	4* Iki Yonlu Secim (Bidirectional Elimination) 	 ileriye ve geriye doğru eleem beraber çalışır 
-       		a) Butun degiskenler dahil edilerek  bir model insa edilir Model başarı testi yapılır
-       		b) Signifacance Level SL seçilir genelde 0.05
-       		c) En düşük p-value değerine sahip olan değişken ele alınır 
-       		d) Bir önceki adımda seçilen değişken sabit tutularak bütün değişkenler sisteme dahil edilir
-			ve en düşük p değerine sahip olan sistemde kalır.	
-       		e) SL değerinin altında olan değişkenler sistemde kalır.
-			eski değişkenlerden hiçbirisi sistemden çıkarılmaz
-       		f) Makine öğrenmesi sonlandırılır
+    2* Backward Elimination (stepwise approach)
+        a) A model is built by including all variables. A model success test is performed.
+        b) Significance Level SL is chosen, generally 0.05.
+        c) The variable with the highest p-value is examined.
+            If P>SL proceed to the next step, if not go to the last step.
+        d) At this stage the variable selected in the previous step with the highest p value is removed from the system.
+        e) The machine learning model is updated and we go back to step c.
+        f) The machine learning process is terminated.
 
-	5* Skor Karsilastirma (Score Comparison)
-		a) Bir başarı kriteri belirleyerek bütün olası modeller inşa edilir.
-		b) Başta belirlenen kriteri en iyi sağlayan yöntem seçilir
-		c) Makine öğrenmesi sonlandırılır.
+    3* Forward Selection
+        a) A model is built by including all variables. A model success test is performed.
+        b) Significance Level SL is chosen, generally 0.05.
+        c) The variable with the lowest p-value is examined.
+        d) The variable selected in the previous step is kept constant and another variable is selected
+            and added to the system.
+        e) The machine learning model is updated and we go back to step c. If p<SL is satisfied
+            for the variable with the lowest p-value we go back to c, if not we proceed to the next step.
+        f) The machine learning process is terminated.
+
+    4* Bidirectional Elimination (forward and backward elimination work together)
+        a) A model is built by including all variables. A model success test is performed.
+        b) Significance Level SL is chosen, generally 0.05.
+        c) The variable with the lowest p-value is examined.
+        d) The variable selected in the previous step is kept constant, all variables are included in the system
+            and the one with the lowest p value stays in the system.
+        e) Variables below the SL value stay in the system.
+            None of the old variables are removed from the system.
+        f) The machine learning process is terminated.
+
+    5* Score Comparison
+        a) All possible models are built by determining a success criterion.
+        b) The method that best satisfies the initially determined criterion is selected.
+        c) The machine learning process is terminated.
 ----------------------------------------------------------------------------
-	*POLİNOMAL REGRESYON
-	- Aynı değişkenin farklı katsayılar ve üs değerleri ile parabolik bir eğri oluşturduğunu göserir.
-	- Eğrileri tahmin etme sırasında kullanacağımız yöntemi barındırır.
+    *POLYNOMIAL REGRESSION
+    -Shows that the same variable creates a parabolic curve with different coefficients and exponent values.
+    -Contains the method we will use when predicting curves.
 ----------------------------------------------------------------------------
-	*SUPPORT VECTOR REGRESSION SVM (MACHINE)
-	*DESTEK VEKTÖRÜ
-	-Normalde iki tane sınıfı ayırmak için kullanılan metot iki kümenin maksimum aralıkla birbirinden ayırma
-		ve regresyonda maksimun noktayı içine alacak şekilde bir aralık oluşturmak için de kullanılır.
-	-Aralık ne kadar küçükse regression o kadar sağlıklı olur
-	-Doğrusal olmayıp bu tahmin metodu kullanılan fonksiyonlar
-	
-	Doğrusal olan , doğrusal olmayan
-	Linear re	exponential
-		RBF gaussian 
-		polynomial
+    *SUPPORT VECTOR REGRESSION SVM (MACHINE)
+    *SUPPORT VECTOR
+    -The method normally used to separate two classes is used to separate two clusters with maximum margin
+        and also used to create a margin that contains the maximum point in regression.
+    -The smaller the margin, the healthier the regression will be.
+    -Functions that are not linear and where this prediction method is used:
+
+    Linear, Non-linear
+    Linear          exponential
+                    RBF gaussian
+                    polynomial
 ----------------------------------------------------------------------------
-	*Karar Ağacı DECISION TREE
-	- 2 Boyutlu uzayda bir karar ağacı oluşturulur.
-	- Verilerin dağılımına göre bölmeler oluşturulur.
-	- Oluşturulan bölmelerin train kümesinden ortalamalar yardımıyla tahminler yapılır
-	- Bu algoritmanın daha hassas olması gerekiyorsa bölüm sayısının artırılması gerekir
+    *Decision Tree DECISION TREE
+    -A decision tree is created in 2-dimensional space.
+    -Splits are created according to the distribution of data.
+    -Predictions are made from the created splits using averages from the training set.
+    -If this algorithm needs to be more sensitive, the number of splits needs to be increased.
 ----------------------------------------------------------------------------
-	*RANDOM FOREST rassal ağaçlar
-	- Ensemble Learning kollektif öğrenme birden fazla model kullanma anlamlarına gelir.
-	- Veri karar ağacı kullanılarak bölümlere ayrılır ve ayrılan bölümler bir daha parçalara ayrılarak bundan yararlanılır.
-	- Bu ayrılan küçük ağaçlar arasında ortalamalardan faydalanılarak tahmin işlemi yapılabilir
-	- Nasıl birleştirileceği ile ilgili yeni yöntemler vardır.
-	- Karar ağaçlarında tüm değerlerin alınması bazen hataları artırabilir.
-	- Bunu sebepleri: - tümünü öğrenirse ezberler overfitting olur
-	       		  - çok veri alırsa ağaç çok dallanır bu da işlem hızını düşürür
+    *RANDOM FOREST
+    -Ensemble Learning means collective learning, using multiple models.
+    -Data is divided into segments using decision trees and the divided segments are further split to benefit from this.
+    -Predictions can be made by utilizing averages among these small split trees.
+    -There are new methods regarding how to combine them.
+    -Taking all values in decision trees can sometimes increase errors.
+    -Reasons for this: - if it learns everything it memorizes, overfitting occurs
+                       - if it takes too much data the tree branches too much, which reduces processing speed
 __________________________________________________________________________________________________________________________
 
-REGRESYON YÖNTEMLERİNİ KARŞILAŞTIRMA (EVALUATİON OF PREDİCTİONS)
+COMPARING REGRESSION METHODS (EVALUATION OF PREDICTIONS)
 
-	*R Square Metodu   
-	
-	- hata kareleri toplamı : topla(veri-tahminiveri)^^2
-	- ortalama farkların toplamı : topla(veri-veriort)^^2
-	- R^^2 = 1-HKT/OFT
-	- R^^2 degeri 0 gelirse aptal bir algoritma olduğunu söylenir.
-	- Çünkü 0 ise degerlerin ortalamasının tüm degerlerle ayni olması gerekir.
-	- R^^2 negatif degerler alabilir ama negatif cıkması modelin kötülügünü gösterir.
-	- Eger R^^2 = 1 ise mükemmel bir algoritma oldugunu söyler gerçek dünyada 1 görme ihitimalimiz yoktur.
+    *R Square Method
 
-	*Düzeltilmiş(ADJUSTED) R Square Metodu
-	
-	Rsquare metodunun eksileri:
-	-R^2 değeri hassas bir değer değildir. Yaptigimiz bazi olumlu calismalari maskeleyebilir.
-		*İki ayrı çarpan olan bir doğrusal regresyon düşünelim. bir R^2 değeri elde ettik.
-		*Ama regresyona yeni bir çarpan eklemeye karar verdik.
-		*Bu durumda 3 ayrı çarpan olan doğrusal regresyonu elde ettik.
-		*Yeni R^2 değerini elde ettiğimizde ueni değerin eskisinden farklı olmasını bekleriz.
-		*Çünkü yeni değişken ya olumlu ya olumsuz etki etmelidir. Lakin R^2 değeri değişmeyebilir. 
-		*Çünkü eklediğimiz yeni değişken R^2 değerini hiçbir zaman azaltmaz. 
-		*Çünkü olumsuz etkisi varsa çarpan 0 olarak alınır.
-		*Bu sebeple algoritma üzerindeki etkiyi görmemizi engeller.
-	-Yukarıda açıklamış olduğumuz durum sebebiyle düzeltilmiş R^2 yöntemi kullanılır.
-	-Düzeltilmiş R^2=1-(1-R^2)(n-1)/(n-p-1) yukarıda yazdığımız problemi çözme bu şekilde saglanir.
-	-Bu yöntemler dışında farklı yöntemler de vardır bunların dez avantajları var olduğunu bilmeliyiz.
-	-Düzeltilmiş R^2 yönteminin de dezavantajları olduğunu unutmamak gerekir. 
-	-Burada önemli bir durumun düzeltildiğini görelim ve alternatiflerin olabileceğini unutmayalım.
+    -Sum of squared errors: sum(data - predictedData)^2
+    -Sum of mean differences: sum(data - dataMean)^2
+    -R^2 = 1 - SSE/SMD
+    -If R^2 comes out as 0, it is said to be a dumb algorithm.
+    -Because if it is 0, the average of the values should be the same as all values.
+    -R^2 can take negative values but a negative result indicates the model is bad.
+    -If R^2 = 1 it says it is a perfect algorithm. In the real world we have no chance of seeing 1.
+
+    *Adjusted R Square Method
+
+    Downsides of R square method:
+    -The R^2 value is not a sensitive value. It can mask some positive work we have done.
+        *Consider a linear regression with two separate coefficients. We obtained an R^2 value.
+        *But we decided to add a new coefficient to the regression.
+        *In this case we obtained a linear regression with 3 separate coefficients.
+        *When we obtain the new R^2 value we expect the new value to be different from the old one.
+        *Because the new variable should have either a positive or negative effect. However R^2 value may not change.
+        *Because the new variable we added never decreases the R^2 value.
+        *Because if it has a negative effect, the coefficient is taken as 0.
+        *For this reason it prevents us from seeing the effect on the algorithm.
+    -Due to the situation explained above, the adjusted R^2 method is used.
+    -Adjusted R^2 = 1 - (1-R^2)(n-1)/(n-p-1) this is how the problem we wrote above is solved.
+    -There are also different methods besides these, and we should know that they have disadvantages.
+    -We should not forget that the adjusted R^2 method also has disadvantages.
+    -Let us see that an important issue has been corrected here and let us not forget that there can be alternatives.
 __________________________________________________________________________________________________________________________
-	
----CLASSIFICATION SINIFLANDIRMA PROBLEMLERI---
--Sayısal olmayan verilerin tahmin edilmesi şeklinde tanımlanabilir.
--Sayısal tahmin yapıyorsak regresyon bir verinin kategorisini belirlemek istiyorsak sınıflandırma yapabiliriz.
+
+---CLASSIFICATION PROBLEMS---
+-It can be defined as predicting non-numerical data.
+-If we are making numerical predictions it is regression. If we want to determine the category of data we can do classification.
 
 --------------------------------------------------------------------------------------------------------------------------
-	*LOGİSTİC FUNCTİON REGRESSION
-	-Adımlı fonksiyon elde ederek sınıflandırma yapmamızı sağlar.
-	-Adımlı fonksiyon: Belirli bir değerin altındaki değerler için 0 üstündeki değerler için 1 değeri veren fonksiyon.
-	-Adımlı fonksiyon olarak doğrusal bir fonksiyon, adım fonksyionu ya da s tipi fonksiyon kullanılabilir.
-	-Bir veya daha fazla değişken kullanılarak sınıflandırma yaptırılabilir
-	-S şeklinde fonksiyonlar görmemiz mümkündür.
-	-Bu algoritmada kullanilacak veriler olceklendirilmelidir.
-	-Boy kilo değerlerine göre kadın erkek şeklinde sınıflandırma bu kategoriye girer.
-	-Matematiksel olarak ifade L(t) = (e^t/e^t+1) = (e^t/e^-t+1)  t = A + Bx 
-----------------------------------------------------------------------------	
-	*KARMAŞIKLIK MATRİSİ (CONFUSION MATRİX)
-	-Tıptan gelen bazı veriler için oluşturulmuştur.
-	-Gerçek ve tahmin arasında doğruluk oranını verir.
-	-Tahminler ve gerçek durumları barındıran bir matristir.
-	-Bir karmaşıklık matrisi nasıl gözükür:
-		[a,b] (a+d)/(a+b+c+d) oranının büyüklüğü modelin başarısını ifade eder
-		[c,d] Yukarıda hesaplanan değer başarı oranı accuracy olarak ifade edilir.
-		a-> true positive b-> false negative
-		c-> false positive d-> true negative
-	-True Positive Rate: gerçekte evet ise kaçı doğru sınıflandırılmış?
-	-False Positive Rate: tahmin hayır ise kaçı doğru sınıflandırılmış?
-	-Specifity: gerçekte hayır ise kaçı doğru sınıflandırılmış? d/(d+c)
-	-Precision: tahmin evet ise kaçı doğru sınıflandırılmış?    a/(a+c)
-	-Sensitivity: a/(a+b)
-	-Prevalence: gerçekteki evet dağılımı oranı.
-	-Bu matris sadece sınıflandırma problemlerinde anlam ifade eder.
-
-	*HATA TİPLERİ
-	-false positive Tip 1 Hata
-		bizim evet dediğimiz bir şey hayır ise
-	-false negative Tip 2 Hata
-		bizim hayır dediğimiz bir şey evet ise
+    *LOGISTIC FUNCTION REGRESSION
+    -It allows us to classify by obtaining a step function.
+    -Step function: A function that gives 0 for values below a certain value and 1 for values above it.
+    -A linear function, step function or sigmoid function can be used as a step function.
+    -Classification can be done using one or more variables.
+    -It is possible to see S-shaped functions.
+    -The data to be used in this algorithm must be scaled.
+    -Classification as male/female based on height and weight values falls into this category.
+    -Mathematically expressed as L(t) = (e^t/e^t+1) = (e^t/e^-t+1)  t = A + Bx
 ----------------------------------------------------------------------------
-	-SVM'de Hata
-	-Risk area içerisinde test verisi çıkması ve bunun yanlış sınıflandırılması
+    *CONFUSION MATRIX
+    -It was created for certain data coming from medicine.
+    -It gives the accuracy rate between actual and prediction.
+    -It is a matrix containing predictions and actual states.
+    -How a confusion matrix looks:
+        [a,b] The magnitude of the ratio (a+d)/(a+b+c+d) represents the success of the model.
+        [c,d] The value calculated above is expressed as accuracy.
+        a -> true positive b -> false negative
+        c -> false positive d -> true negative
+    -True Positive Rate: if actually yes, how many were correctly classified?
+    -False Positive Rate: if predicted no, how many were correctly classified?
+    -Specificity: if actually no, how many were correctly classified? d/(d+c)
+    -Precision: if predicted yes, how many were correctly classified? a/(a+c)
+    -Sensitivity: a/(a+b)
+    -Prevalence: the ratio of actual yes distribution.
+    -This matrix only makes sense in classification problems.
 
-	*ACCURACY PARADOX doğruluk paradoksu
-	-ZeroR algoritması eğitim için verilen veri seti içerisinde çoğunlukta olan sınıfa göre test verilerini sınıflandırır.
-	-Normal bir sınıflandırma algoritmasına göre bazen daha başarılı gibi gözükebilir ama dikkatli olunmalıdır
-	-Böyle durumlarda sadece Accuracy e bakarak karar vermememiz gerekir.
-	-Denge elde etmeye yönelik karmaşıklık matrisi içerisindeki farklı değerleri kullanabiliriz
-
-	-ROC EĞRİSİ Receiver Operating Characteristic
-	-tpr = TP/TP+FN  TP-> true positive tpr-> true positive rate buranın değerinin yüksek olması hata oranını ARTIRIR
-	-fpr = FP/FP+TN  FN-> false negative fpr-> false positive rate buranın değerinin yüksek olması hata oranını AZALTIR
-	-Görsel olarak makine öğrenmesi algoritmasının nerede olduğunu anlamamızı sağlar
-	-Farklı sınıflandırma algoritmalarını grafiksel olarak kıyaslama için kullanılabilir.
-	-Accuracy Doğrularında positive/negative oranına göre veri setlerinin oranı bulunur.
-	  
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	*KNN K NEAREST NEIGHBORHOOD:
-	-Sınıflandırılacak veriler uzaya dökülür.
-	-Bir veri seçilir veriye en yakın 3 (k) komşu seçer.
-	-Bu komşular içerisinde çoğunluk hangi sınıfta ise seçtiğimiz veri bu sınıftadır.
-	-Eğer komşular sınıflardan eşit sayılarda ise bu drurumda uzaklığa bakılır.
-	-Bu yukarıda anlattığımız lazy learning örneğidir. Yani başlangıçta öğrenme yapılmayan çeşittir.
-	-Başka bir versiyonda (eager learning) önce veriler işlenir veriler çekilir.
-	-Çektiği verilere göre uzayı bölgelere ayırır. Verilere bir daha ihtiyaç duymaz.
-	-Eğer yeni bir veri gelirse hangi bölgede olduğuna bakarak karar verir.
-	
-	-İki veri arasındaki uzaklığı ölçmenin farklı hesaplama yolları da vardır.
-	-Euclidean minkowski mahalanobis bu hesaplama örnekleridir.
-	-Hangi ölçümün hangi veri seti için uygun olacağı önemlidir bu seçime dikkat edilmelidir.
-	
-	-Bu algoritma kullanılırken eğer veri setimizi bozacak uç verilerimiz var olabilir.
-	-Bu durumda komşu sayısını fazla seçmek iyi bir şey değildir. 
-	-Çünkü komşu uç değerler böyle bir durumda yeter sayıda komşu bulamayacaklar ve yanlış sınıfa dahil olacaklardır.
-	-Yukarıda yazdığım madde göz önüne alınarak komşu sayısı seçilmelidir.
-
-	KNN algoritmasında k değeri neye göre belirlenir:
-		Voronoi hücreleri üzerinden algoritmayı gözden geçirelim.
-		Bu hücre durumlarını webden araştırarak bulunuz resim ya da data.
-		Bu veri üzerinden k nın durumunu düşünelim.
-		Pattern Classification kitabında bu durum uzun uzun ele alınmıştır.
-		Genel bir formül bulunmuştur karekök(eğitim boyutu)/2 bu tartışmaya açık bir formüldür.
-		Bir kural değildir. K sayısı sizin isteklerinize göre değişebilir. 
-	KNN algoritmasında veri sınır çizgisine düşerse ne olur:
-		Bu durumda hangisine daha yakın olduğu hesaplanır.
-		Örneğin mavi örneklerin sınıra daha yakın olması durumunda eşitlik bozulur.
-		
-	Kaynaklar	 
-	sklearn knn yazıp kaynaklara bakabilirsin
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	*SVM ile SINIFLANDIRMA SVC MULTI CLASS 
-	-Regression yöntemiyle neredeyse aynı şeyler söylenir.
-	-Sınıflandırmada iki sınıfın birbirinden keskin ayrımı yapılmaya çalışılır
-	-RBF ya da polynomal üssel kullanılabilir. bu kullanımlar veri setine göre seçilmelidir.
-	-Uç değerler için çok uygun değildir.
-	-Ayrıca ölçeklendirilmemiş veri setleri SVM'de kullanılamaz.
-	-Çok uç değerlerin olduğu veri setlerinde kullanılamaz.
-	-İki sınıf arasında bir ayrım yapıldıktan sonra veri seti unutulur
-	-Sınıf ayrımı yani uzay bölgeleri üzerinde yeni veriler sınıflandırılır.
-	-Yani verinin bulunduğu bölge sınıfını belirler. 
-	-Eğer marjin içerisine hiçbir şekilde veri almyorsa hard svc olarak isimlendirilir
-	-Eğer veri alıyorsa soft svc olarak isimlendirilir 	
+    *ERROR TYPES
+    -false positive Type 1 Error
+        when something we said yes to is actually no
+    -false negative Type 2 Error
+        when something we said no to is actually yes
 ----------------------------------------------------------------------------
-	*SVM KERNEL TRICK
-	-Doğrusal olmayan hiç bir şekilde doğrusal olarak çözümlenemeyen veriler için kullanılır.
-	-Non linear alanın orta noktası bulunur ve veri setine bir boyut daha eklenir.
-	-Belirlediğimiz orta nokta bize en yakın nokta olur.
-	-Orta noktaya yakın değerler bize daha yakın orta noktaya uzak değerler bize daha uzak olur
-	-Bu da bize uzak ve yakın olmak üzere iki küme oluşturma imkanı sağlar.
-	-Bu şekilde boyut artırmaları yapılabilir.
-	-Yeni oluşan çok boyutlu küme üzerine farklı çizimler yapılarak sınıflandırmalar hassas şekilde yapılır.
-	-Ayrıca birden fazla kernel trick bir veri setinde kullanılabilir.
-	-Bu çekme işlemi nasıl yapılır:
+    -Error in SVM
+    -Test data appearing within the risk area and being misclassified.
+
+    *ACCURACY PARADOX
+    -The ZeroR algorithm classifies test data according to the majority class in the training dataset.
+    -It may sometimes appear more successful than a normal classification algorithm but caution should be taken.
+    -In such cases we should not make decisions by only looking at Accuracy.
+    -We can use different values within the confusion matrix aimed at achieving balance.
+
+    -ROC CURVE Receiver Operating Characteristic
+    -tpr = TP/TP+FN  TP -> true positive tpr -> true positive rate. A high value here INCREASES the error rate.
+    -fpr = FP/FP+TN  FN -> false negative fpr -> false positive rate. A high value here DECREASES the error rate.
+    -It allows us to visually understand where the machine learning algorithm stands.
+    -It can be used for graphical comparison of different classification algorithms.
+    -In Accuracy Lines the ratio of datasets is found according to the positive/negative ratio.
+
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	*NAIVE BAYES
-	-Koşullu olasaılıklardan yararlanarak sınıflandırma problemleri çözme amacıyla kullanılır
-	-Koşullu olasılık ile gelir düzeyine göre bilgisayar alma oranı bulunabilir
-	-Bilgisayar alan kişileri gelir düzeyine göre sınıflandırma yapabilirsiniz.
-	-Dengesiz veri kümelerinde çalışabilmesi en önemli özelliğidir.
-	-Önce bilgisayar alma ve almama oranı hesaplanır.
-	-30 yaşından küçük bir kişinin bilgisayar alma ve almama oranı
-	-Bu şekilde şartlara ayrılan durumumuz üzerinden sınıflandırmamız rahat bir şekilde yapılabilir.
-	-Lazy learning: veri önce gelir o veri içerisinde beklenir veri akışı devam ederse öğrenmeyi yapar
-	-Eager learning: veri gelmeden önce tüm veriler üzerinden tüm ihtimalleri öğrenmeye çalışır
-	-Büyük veri çalışmalarında lazy learning daha avantajlıdır.
-	-Gaussian naive bayes-multinomial naive bayes-bernoulli naiv bayes
-	-Sürekli değerler    - kesikli sayılar için  - iki ihtimalli olan veriler için
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++	
-	*KARAR AGĞACI İLE SINIFLANDIRMA DECISION TREE
-	-Bölgelere ayrılması hususunu yukarıda analatmıştık
-	-Çoğunluğun bulunduğu alan çoğunluğa göre sınıflandırılır
-	-Ve yeni gelen veri için oluştururlan bölgelere göre karar verir
-	-Bazen birbirine yakın değerler için bölme işlemleri devam edebilir.
-	-Ama burada tüm verilerin teker teker ayrılmasından kaçınılması gerekir
-	-Yoksa overfitting olur ve program tüm verileri ezberle
-	-Karar ağaçlarında ordinal ya da nominal veriler bulunmuyorsa direkt sınıflandırmalara başlanabilir
-	-Ama sayısal değerler barındırıyorsa sayısal değerlerin bölünmesi için ayrı bir algoritma kullanılır.
-	-Ağaç dallanması Quinlan's ID3 information(Gain) yöntemi ile çözülebilir.
-	-Burada değeri yüksek çıkan ilk dallanmayı yapacağını söyler.
-	-Bilgisayarlar bu şekilde ağaç yapılarını oluşturur.
-	-Dökümantasyondaki parametrelerden CRITERION parametresini kullanacağız
-	-Geany: p*p lerin negatiflerinin toplamı
-	-Entropy: p*log(p) nin negatifleri toplamı
+    *KNN K NEAREST NEIGHBORHOOD:
+    -Data to be classified is plotted in space.
+    -A data point is selected and the 3 (k) nearest neighbors are chosen.
+    -Whichever class the majority of these neighbors belong to, the selected data belongs to that class.
+    -If the neighbors are equal in number from each class, distance is considered.
+    -What we described above is an example of lazy learning. That is, the type where no learning is done at the beginning.
+    -In another version (eager learning) data is processed first and features are extracted.
+    -According to the extracted features, the space is divided into regions. The data is no longer needed.
+    -If new data comes in, a decision is made by looking at which region it falls in.
+
+    -There are also different calculation methods for measuring the distance between two data points.
+    -Euclidean, Minkowski, Mahalanobis are examples of these calculations.
+    -It is important which measurement is suitable for which dataset, and this selection should be done carefully.
+
+    -When using this algorithm there may be outlier data that could corrupt our dataset.
+    -In this case selecting too many neighbors is not a good thing.
+    -Because neighboring outlier values in such a situation will not find enough neighbors and will be included in the wrong class.
+    -The number of neighbors should be selected considering the point I wrote above.
+
+    How is the k value determined in the KNN algorithm:
+        Let us review the algorithm through Voronoi cells.
+        Search the web for images or data about these cell situations.
+        Let us think about the state of k on this data.
+        This situation has been discussed at length in the Pattern Classification book.
+        A general formula has been found: sqrt(training size)/2. This is a debatable formula.
+        It is not a rule. The K number can change according to your needs.
+    What happens if data falls on the class boundary in the KNN algorithm:
+        In this case it is calculated which one it is closer to.
+        For example if the blue samples are closer to the boundary, the tie is broken.
+
+    Resources
+    You can search sklearn knn and look at the sources.
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	*RASSAL AĞAÇLAR RANDOM FOREST 
-	-Ensemble learning veriyi parçalara bölüp parçalar üzerinden karar ağacı oluştururlur.
-	-Her karar ağacı en son birleştirilecek çoğunluğa göre sınıflandırma yapılır
-	-Xboxlarda hareket algılama ile ilgili yazılmış makale microsoftun linki alt satırda
-	-Majority vote algoritması üzerine kurulu bir algoritmadır.
-	-N_estimators : kaç ağaç oluşturayım?
-	-Criterion : karar ağacında belirtildi?
-	
-	ADA BOOST - QDA - GAUSSİAN PROCESS - NEURAL NET
+    *SVM CLASSIFICATION SVC MULTI CLASS
+    -Nearly the same things are said as with the regression method.
+    -In classification, a sharp separation of two classes is attempted.
+    -RBF or polynomial/exponential can be used. These usages should be selected according to the dataset.
+    -Not very suitable for outliers.
+    -Also unscaled datasets cannot be used in SVM.
+    -Cannot be used in datasets with very extreme outliers.
+    -After a separation is made between two classes, the dataset is forgotten.
+    -New data is classified on the class separation, that is, the space regions.
+    -So the region where the data is located determines its class.
+    -If it does not accept any data inside the margin it is called hard SVC.
+    -If it accepts data it is called soft SVC.
+----------------------------------------------------------------------------
+    *SVM KERNEL TRICK
+    -Used for data that is not linear and cannot be solved linearly in any way.
+    -The center point of the non-linear area is found and another dimension is added to the dataset.
+    -The center point we determined becomes the closest point to us.
+    -Values close to the center point become closer to us, values far from the center point become farther from us.
+    -This provides us the opportunity to create two clusters: far and close.
+    -Dimension increases can be done this way.
+    -Classifications are made precisely by drawing different lines on the newly formed multi-dimensional cluster.
+    -Also more than one kernel trick can be used on a dataset.
+    -How is this pulling operation done:
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    *NAIVE BAYES
+    -Used to solve classification problems by utilizing conditional probabilities.
+    -With conditional probability, the rate of buying a computer based on income level can be found.
+    -You can classify people who buy computers according to their income level.
+    -Its most important feature is that it can work with imbalanced datasets.
+    -First the rate of buying and not buying a computer is calculated.
+    -The rate of a person under 30 buying and not buying a computer.
+    -In this way our classification can be done easily through the conditions we have separated.
+    -Lazy learning: data comes first, it waits within that data, if data flow continues it performs learning.
+    -Eager learning: before data comes, it tries to learn all possibilities from all data.
+    -In big data studies, lazy learning is more advantageous.
+    -Gaussian naive bayes - multinomial naive bayes - bernoulli naive bayes
+    -For continuous values  - for discrete numbers  - for binary data
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    *CLASSIFICATION WITH DECISION TREE
+    -We explained the splitting into regions above.
+    -The area where the majority is found is classified according to the majority.
+    -And for new incoming data, a decision is made according to the created regions.
+    -Sometimes splitting operations can continue for values that are close to each other.
+    -But here, separating all data one by one should be avoided.
+    -Otherwise overfitting occurs and the program memorizes all data.
+    -In decision trees, if there are no ordinal or nominal data, classifications can be started directly.
+    -But if it contains numerical values, a separate algorithm is used to split the numerical values.
+    -Tree branching can be solved with Quinlan's ID3 information (Gain) method.
+    -Here it says that the one with the highest value will make the first branch.
+    -Computers create tree structures this way.
+    -We will use the CRITERION parameter from the documentation parameters.
+    -Gini: the sum of the negatives of p*p
+    -Entropy: the sum of the negatives of p*log(p)
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    *RANDOM FOREST
+    -Ensemble learning: the data is divided into parts and decision trees are created from the parts.
+    -Each decision tree is finally combined and classification is done according to the majority.
+    -There is an article written about motion detection in Xbox by Microsoft (link below).
+    -It is an algorithm built on the majority vote algorithm.
+    -N_estimators: how many trees should I create?
+    -Criterion: was it specified in the decision tree?
+
+    ADA BOOST - QDA - GAUSSIAN PROCESS - NEURAL NET
 
 
-	
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	*KÜMELEME BÖLÜTLEME
-	
-	-Görüntü işeleme ve müşteri segmentasyonu gibi konular buraya dahildir.
-	-Elimizdeki örneklerin kaç sınıf olduğu ya da nasıl sınıflanacağı öncesinde verilmez.
-	-Gözetimsiz öğrenme unsupervise öğrenmedir.
-	-Burada train test verileri şeklinde bir ayrım yoktur.
-	-Sınıflandırma probleminden farkı bir sınıf tanımı ve train test bölümü yoktur.
-	-Kendi dünyasında kendi sınıflarını oluşturur şuan çok fazla gelişmiş modeli yoktur.
-	-En çok Müşteri segmentasyonu , pazar segmentasyonu , sağlık görüntü işleme alanlarında kullanılır.
-	-Müşteri segmentasyonu -> Collabration Filtering müşterinin kendisine benzeyen kişilerle gruplandırılması.
-	-Yani daha önceden hakkında data bulunmayan bir kişiyi bir segmente koymayı sağlar.
-	-Özel kampanyalar yapma, tehdit ve sahtekarlık yakalama,eksik veri tamamlama işlemleri gibi yerlerde kullanılır.
-	-Tehdit ve sahtekarlık yakalama da outlayerda olan veriler kullanılarak oluştururlur.
-	-Eksik veri tamamlamada verinin farklı segmentlerine göre veri tamamlamalar yapılabilir.
-	-Daha çok oluşturulan sınıflandırılmış bir verinin alt sınıflandırmalar yapılarak segmentlerin oluşturulmasıdır.
-----------------------------------------------------------------------------	
-	*K-MEANS K-ORTALAMA
-	-Kaç küme olacağı kullanıcıdan parametre olarak alınır.
-	-Bunun kullanıcıdan almayan kendi karar veren şekli de vardır. (Ex means)
-	-Rastgele olarak k merkez noktası seçiyor.
-	-Her veri örneği kendisine yakın merkez noktasıyla ilgili kümeye atılır.
-	-Her küme için tekrar merkez noktaları oluşturulur ve kaydırma yapılır.
-	-Ağırlık merkezlerine göre kaydırma yapılır. 
-	-Ağırlık merkezi devamlı aynı yerde çıkmaya başlayınca durur. 
-	-Gözetimsiz bir öğrenmedir her veri model için eşit değer taşır.
-	-Değişik varyasyonlarında merkez noktası seçimi kullanıcıdan parametre alma işlmeleri farklılık gösterebilir.
+    *CLUSTERING
+
+    -Topics such as image processing and customer segmentation are included here.
+    -The number of classes or how they will be classified is not given beforehand.
+    -It is unsupervised learning.
+    -There is no separation as train/test data here.
+    -The difference from classification problems is that there is no class definition and train/test split.
+    -It creates its own classes in its own world. Currently there is no very advanced model for it.
+    -It is most commonly used in customer segmentation, market segmentation, and health image processing fields.
+    -Customer segmentation -> Collaboration Filtering: grouping a customer with people similar to them.
+    -It allows placing a person with no prior data into a segment.
+    -It is used in areas like creating special campaigns, detecting threats and fraud, and completing missing data.
+    -Threat and fraud detection is built using outlier data.
+    -In missing data completion, data completions can be done according to different segments of the data.
+    -It is mostly about creating segments by making sub-classifications of an already classified data.
 ----------------------------------------------------------------------------
-	**K-Means Başlangıç Noktası Tuzağı
-	-Rastgele başlangıç noktasının yanlış veri uzaylarına dağılması bölütlemeyi kötü etkileyebilir.
-	-Kolayca 3 adet sınıfa bölünebilen bir veri kümesi düşünelim.
-	-Merkezlerin rastgele dağıldığı durumda bir sınıfa iki merkez gitme ihtimali vardır.
-	-Bu ihtimal dikkate alınmalıdır. 
-	-Rastgele merkez atama yerine farklı çözümlerin kullanılması daha doğru olur. 
+    *K-MEANS
+    -The number of clusters is taken as a parameter from the user.
+    -There is also a version that decides on its own without taking it from the user (Ex means).
+    -It randomly selects k center points.
+    -Each data sample is assigned to the cluster related to the nearest center point.
+    -New center points are created for each cluster and shifting is done.
+    -Shifting is done according to the centers of gravity.
+    -It stops when the center of gravity keeps coming out at the same place.
+    -It is unsupervised learning; every data holds equal value for the model.
+    -In different variations, the center point selection and parameter taking from the user may differ.
 ----------------------------------------------------------------------------
-	**K-Means ++ 
-	-K-Means geliştirilmiş versiyonudur. 
-	-Rastgele seçilen noktalardan en yakınına her noktada uzaklığı hesaplar.
-	-Yeni noktaları mesafenin karesini olasılık alarak bulur.
-	-Burada da bir rassallık vardır bu da sorun oluşturabilir.
-----------------------------------------------------------------------------	
-	**K nın kaç olduğunun önemi
-	-K nın seçimi gözetimsiz öğrenme algoritması olduğu için önemlidir.
-	-Ex means algoritması ise bir aralık verildiğinde bu aralıktaki tüm bölütlemelerin skorunu çıkarır
-	-Ama başarının nasıl bulunacağı da başka bir sorun olduğunu unutmayalım.
-	-Bu skorlama WCSS yöntemi ile yapılır. (within-cluster sums of squares)
-	-Bir merkez seçilir ve onun kümesindeki verileri ona uzaklıklarının kareleri toplanır.
-	-Bu skor ne kadar yükselirse bölütleme algoritması o kadar kötü olduğu söylenebilir.
-	-Ama bu skor overfitting olmaması için çok düşürülmemelidir. 
-	-Burada bir grafik oluşturulması ve grafiğe göre karar verilmesi daha doğru olacaktır.
-	-Oluşturulan grafikte eğimin aniden değiştiği dirsek nokta genelde doğru nokta olarak alınır.
-	-Overview of clustering methods dan hangi metodu kullanacağınızı bilgi edinebilirsin.
-	-Bunu scikitlearn sitesinden alabilirsin.
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++	
-	*HIERARCHICAL CLUSTERING
-	**Agglomerative
-	-Aşağıdan yukarıya doğru çalışır. 
-	-Her veri tek bir küme bölüt ile başlar
-	-En yakın ikişer komşuyu alıp ikişerli küme oluşturulur.
-	-En yakın iki kümeyi alıp yeni küme oluşturulur
-	-Tek bir bölüt küme oluncaya kadar devam eder
-	-İçerisindeki sınıf yapıları kaybolmaz
-----------------------------------------------------------------------------	
-	**Divisive
-	-Yukarıdan aşağıya sınıflandırma şeklinde olur
-	-Bütün veriler bir küme olarak kabul edilir.
-	-Birbirine yakın olan noktalar kümelenir son tek nokta kümeye eklendiğinde biter
-	-Kısaca agglomerative'in tam tersidir.	
-	-Tek bir veri bir pakete yerleştiğinde sonlanır.
-----------------------------------------------------------------------------	
-	*Dikkat Edilmesi Gerekenler:
-	-Bu algoritmalarda mesafe ölçümü bir problemdir
-	-Mesafeler distance matrix ile gösterilebilir.
-	-öklid mesafesi kullanılabilir.
-	
-	-Referanslar ise diğer problemdir. Buna farklı çözümler vardır. 
-	-Referans olarak en yakın noktalar alınabilir.
-	-En uzak noktalar hesaplanabilir.
-	-Kümenin orta noktası referans alabilir.
-	-Ortalamalar referans alınabilir.
+    **K-Means Starting Point Trap
+    -The random starting point being distributed to wrong data spaces can negatively affect clustering.
+    -Consider a dataset that can easily be divided into 3 classes.
+    -In the case where centers are randomly distributed, there is a possibility of two centers going to one class.
+    -This possibility should be taken into consideration.
+    -Using different solutions instead of random center assignment would be more accurate.
 ----------------------------------------------------------------------------
-	**Dendogram
-	-Tüm noktaların yazılı olduğu ve aralarındaki mesafye göre yerleştirilmiş tablo yapısı.
-	-Bu tablo yapısında birleştirmeler gösterilebilir.
-	-Kümelerin birleşmelerinin mesafelere bağlı olduğunu okunabilir biçimde gösterilmesini sağlar.
-	-Bu tablo yapısına göre hiyerarşik bölütleme görülmesi kolaylaşır.
-	-Kullanıcının istediği kadar bölüt oluşturma imkanı sağlanır.
-	-En optimum yapıyı elde etmek için dendogramın en uzun olduğu bölmeye bakılabilir
-----------------------------------------------------------------------------	
-	*WARD METHOD 
-	-Her bölütün başka bir bölüte uzaklığı
-	-Wcc değeri hesaplama yöntemini kullanır.
-	-Ward methodu kullanılarak da optimum model bulunabilir.
-	-Bunu sen araştır.
+    **K-Means++
+    -It is the improved version of K-Means.
+    -It calculates the distance to the nearest point from randomly selected points at each step.
+    -It finds new points by taking the square of the distance as probability.
+    -There is also randomness here which can cause issues.
+----------------------------------------------------------------------------
+    **The Importance of How Many K
+    -The selection of K is important because it is an unsupervised learning algorithm.
+    -The Ex means algorithm outputs the score of all clusterings within a given range.
+    -But let us not forget that how to find success is another problem.
+    -This scoring is done with the WCSS method (within-cluster sums of squares).
+    -A center is selected and the squares of the distances of the data in its cluster to it are summed.
+    -The higher this score the worse the clustering algorithm can be said to be.
+    -But this score should not be reduced too much to avoid overfitting.
+    -Creating a graph and making decisions based on the graph would be more accurate.
+    -In the created graph, the elbow point where the slope changes suddenly is generally taken as the correct point.
+    -You can get information about which method to use from "Overview of clustering methods".
+    -You can get this from the scikit-learn website.
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	*BİRLİKTELİK KURAL ÇIKARIMI ASSOCIATION RULE MINING LEARNING ARM/ARL
-	-3 farklı tipi üzerinden inceleme yapılabilir apriori , fp-growth, eclat
-	-Biz apriori ve eclatı inceleyeeğiz.
-	-Fp-growth araştırılacak.
-	-Bu algoritmalara alışveriş alışkanlıkları sebebiyle ihtiyaç duyulduğu söylenebilir.
-	-Tekrar eden verilerin yakalanması durumunda kullanılan modeldir.
-	-Armut alanlar elma da aldı gibi.
-	-İlişkisellik mi nedensellik mi? sorusunu temel alır. Causation Correlation
-	-Temeli makineler insanlar gibi düşünüyor mu temel sorusuna dayanır.
-	-Bilgisayar için iki ürün beraber satılıyorsa bunun neden olduğunu sorgulamaz.
-	-Sadece o iki ürünü beraber satar.
-	-Bilgisayar dondurma satışı ve köpekbalığı saldrıları arasındaki ilişkiye bakar.
-	-Burada bilgisayarlar nedenselliği dikkate almaz yani neden aynı anda oluyoru sormaz.
-	-Biz sorarız ve bunu güneşe bağlarız.
-----------------------------------------------------------------------------	
-	**DESTEK SUPPORT
-	-Yüz kişiye sorduk şeklinde düşünelim eylemin varlığı önemli
-	-Yüzde kaç bir eylimin yapıldığı
-	-Support(a) = (a varlığını içeren eylem)/(Toplam eylem sayısı)
-----------------------------------------------------------------------------	
-	**CONFIDENCE(a->b) = (a ve b varlığını içeren eylemler) / (a varlığını içeren eylemler)
-	-a olayını yapan kişilerin yüzde kaçı b olayını yaptı şeklinde yüzdelik
-	-Tek bir ürün eylm olmadığı zaman bu yöntem kullanılabilir.
-----------------------------------------------------------------------------	
-	**LIFT(a->b)  confidence(a->b)/support(b)
-	-a eyleminin b eylemine etkisi nedir sorusuna cevap verir.
-	-Lift değeri 1'in altında çıkarsa a olayı b olayını negatif etkiliyor
-	-Lift değeri 1'in üstünde çıkarsa a olayı b olayını pozitif etkiliyor	
-----------------------------------------------------------------------------	
-	**OLAY SIKLIĞI(APRIORI)
-	-Önce parçalayarak oranlara bakıyoruz.
-	-Sonra parçadan bütüne ilerliyoruz ve frekansı düşük olan verileri eliyoruz.
-	-Sonra o parçaların birbirlerine etkisi dikkate alınarak bazı birleştirmeler yapıyoruz.
-	-En iyi durum elde etmeye çalışıyoruz
-	-Bir örnek yapalım:
-		beraber alınan ürünler listesi elimizde olsun.
-		itemset 1, 2, 3, 4, 5
-		sup 	3, 3, 3, 1, 3         
-		Burada 1 numaralı ürün 3 farklı ürünle farklı zamanlarda beraber sipariş edilmiş.
-		APRIORI eleyerek parçadan bütüne gider. Örneğin ilk adımda 4 numaralı ürünü eler.
-		Sonra farklı kombinasyonlar yapar 2 li tablo şeklinde tekrar gösterir.
-		Tekrar eleme yapar ve beraber satan 3 ürünü bulur. 
-	-Bu şekilde sınıflandırmalarda pazarlama önerilerinde kullanılır.
-	-Bu algoritma için scikitlearn de bir fonksiyon ve sınıf yoktur.
-	-Bunu kullanacağın zaman githubdan indir.
-----------------------------------------------------------------------------	
-	**ECLAT ALGORİTMASI
-	-Equivalence Class Transformation
-	
-	-Apriori -> Breadth first search
-	-Eclat -> Depth First Search 
-	
-	-Eclat adım olarak Aprioriye göre çok daha kısadır. Apriori'ye göre oldukça kısadır.
-	-Dikey grafik olarak veri tabanı dizilir. Örneğin 1 numaralı ürün hangi çantalarda satın alınmış.
-	-Bütün veriler okunmadan bir sonraki basamaklara geçilebiliyor.
-	-Dikey olarak çizilen tabloda verilerin kesişimine bakılır.
+    *HIERARCHICAL CLUSTERING
+    **Agglomerative
+    -Works from bottom to top.
+    -Each data starts as a single cluster.
+    -The two closest neighbors are taken and clusters of two are created.
+    -The two closest clusters are taken and a new cluster is created.
+    -Continues until there is a single cluster.
+    -The class structures within are not lost.
+----------------------------------------------------------------------------
+    **Divisive
+    -Classification happens from top to bottom.
+    -All data is accepted as one cluster.
+    -Points close to each other are clustered. It ends when the last single point is added to a cluster.
+    -In short it is the exact opposite of agglomerative.
+    -It terminates when a single data point is placed in a package.
+----------------------------------------------------------------------------
+    *Things to Pay Attention To:
+    -Distance measurement is a problem in these algorithms.
+    -Distances can be shown with a distance matrix.
+    -Euclidean distance can be used.
+
+    -References are another problem. There are different solutions for this.
+    -The closest points can be taken as reference.
+    -The farthest points can be calculated.
+    -The center point of the cluster can be taken as reference.
+    -Averages can be taken as reference.
+----------------------------------------------------------------------------
+    **Dendrogram
+    -A table structure where all points are written and placed according to the distance between them.
+    -Merges can be shown in this table structure.
+    -It allows the readable display that cluster merges depend on distances.
+    -Hierarchical clustering is easier to see according to this table structure.
+    -It provides the user the opportunity to create as many clusters as desired.
+    -To obtain the most optimum structure, the longest section of the dendrogram can be examined.
+----------------------------------------------------------------------------
+    *WARD METHOD
+    -The distance of each cluster to another cluster.
+    -It uses the WCC value calculation method.
+    -The optimum model can also be found using the Ward method.
+    -You should research this.
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    *ASSOCIATION RULE MINING/LEARNING ARM/ARL
+    -3 different types can be examined: apriori, fp-growth, eclat.
+    -We will examine apriori and eclat.
+    -Fp-growth will be researched.
+    -It can be said that these algorithms are needed due to shopping habits.
+    -It is a model used when catching recurring data.
+    -Like those who buy pears also bought apples.
+    -It is based on the question: is it correlation or causation? Causation vs Correlation.
+    -The foundation is based on the fundamental question: do machines think like humans?
+    -For the computer, if two products are sold together it does not question why.
+    -It just sells those two products together.
+    -The computer looks at the relationship between ice cream sales and shark attacks.
+    -Here computers do not consider causation, meaning they do not ask why they happen at the same time.
+    -We ask and attribute it to the sun.
+----------------------------------------------------------------------------
+    **SUPPORT
+    -Think of it as "we asked a hundred people". The existence of the action is important.
+    -What percentage an action was performed.
+    -Support(a) = (actions containing the existence of a) / (total number of actions)
+----------------------------------------------------------------------------
+    **CONFIDENCE(a->b) = (actions containing both a and b) / (actions containing a)
+    -The percentage of people who performed action a that also performed action b.
+    -This method can be used when there is not a single product/action.
+----------------------------------------------------------------------------
+    **LIFT(a->b)  confidence(a->b) / support(b)
+    -It answers the question: what is the effect of action a on action b?
+    -If the lift value comes out below 1, action a negatively affects action b.
+    -If the lift value comes out above 1, action a positively affects action b.
+----------------------------------------------------------------------------
+    **EVENT FREQUENCY (APRIORI)
+    -First we look at the ratios by breaking down.
+    -Then we go from parts to whole and eliminate data with low frequency.
+    -Then we make some combinations considering the effects of those parts on each other.
+    -We try to achieve the best situation.
+    -Let us do an example:
+        let us have a list of products bought together.
+        itemset 1, 2, 3, 4, 5
+        sup     3, 3, 3, 1, 3
+        Here product number 1 was ordered together with 3 different products at different times.
+        APRIORI goes from parts to whole by eliminating. For example in the first step it eliminates product number 4.
+        Then it makes different combinations and shows them again as a 2-item table.
+        It eliminates again and finds the 3 products that sell together.
+    -It is used in classifications and marketing recommendations this way.
+    -There is no function or class in scikit-learn for this algorithm.
+    -When you want to use it, download it from GitHub.
+----------------------------------------------------------------------------
+    **ECLAT ALGORITHM
+    -Equivalence Class Transformation
+
+    -Apriori -> Breadth First Search
+    -Eclat -> Depth First Search
+
+    -Eclat is much shorter in steps compared to Apriori. It is considerably shorter than Apriori.
+    -The database is arranged as a vertical graph. For example which baskets product number 1 was purchased in.
+    -The next steps can be reached without reading all the data.
+    -The intersection of data in the vertically drawn table is examined.
 __________________________________________________________________________________________________________________________
 
-REINFORCED LEARNING TAKVİYELİ PEKİŞTİRMELİ ÖĞRENME
-	-Reinforced learning robotlar ve hareketleri devamlı düşen bir robotun bir süre sonra düşme sıklığının azalması.
-	-Kısaca bir algoritmanın hatalardan öğrenmesini ifade eder.
-	-Bizim tanımladığımız hedefleri gerçekleştirme konusundaki en optimize duruma erişmek gibi düşünülebilir.
-	-Yazılan algoritma bir aksiyon yapar ve gözlem yaparak aksiyonun puanlaması yapar.
-	-Puanlamaya göre cezalar olur ve sistemler bu şekilde en iyi durumu elde etmeye çalışır.
-	-AlphaGo kendi kendine oynayarak satranç öğrenmiş bir yapay zeka örneği (sen de araştırarak öğren)
-	-Expert system lerde gelebileceği en iyi seviye insan olacak şekilde düşünülebilir.
-	-Ama bu şekilde gelişen algoritmalar spesifik konularda insandan daha iyi olabilir.
-	-Agent -> environment -> agent -> environment sonsuz döngüsünde model devamlı döner.
-	-Aşağıdaki başlığı inceleyelim:
+REINFORCEMENT LEARNING
 
-	*TEK KOLLU CANAVAR SLOT MAKİNALARI ONE ARMED BANDIT
-	-Bir kumarahaneye gittiniz ve çok sayıda slot makinelerinden gördünüz.
-	-Bu makineler sizin paranızın %80-90 oranında kısmını size geri verir.
-	-Bu makinelari keşfettiniz ve dağılımları incelediniz.
-	-Hepsi aynı oranda kazansa bile dağılımları inceleyip en karlı makineyi seçme işlemini yapmak istiyoruz.
-	-Bu teori yukarıda yazdığım kısma dayanır.
-	-Bir reinforced yöntemi ile bulunabilir. Bunun araştırması sana kalmış :)
+    -Reinforcement learning is about robots and their movements. A robot that constantly falls gradually reduces its frequency of falling.
+    -In short it refers to an algorithm learning from its mistakes.
+    -It can be thought of as reaching the most optimized state in achieving the goals we define.
+    -The written algorithm performs an action and observes and scores the action.
+    -According to the scoring there are penalties and systems try to achieve the best state this way.
+    -AlphaGo is an example of an AI that learned chess by playing against itself (you should also learn by researching).
+    -In expert systems the best level it can reach can be thought of as human level.
+    -But algorithms developing this way can be better than humans in specific subjects.
+    -Agent -> environment -> agent -> environment: the model continuously cycles in an infinite loop.
+    -Let us examine the following heading:
 
-	*A-B TEST
-	-Bir reklamın kullanıcı tarafından tıklanıp tıklanmayacağını bulmak için kullanılır.
-	-Kullanıcılara birden fazla reklam göstererek insanların tepkisi ölçülür ve sonuçlar kaydedilir.
-	-Sonuçlara bakarak en hızlı ve en az denemeyle karar vermemiz gerekiyor.
-	-Bir reinforced yöntemi ile karar verilebilir.
+    *ONE ARMED BANDIT SLOT MACHINES
+    -You went to a casino and saw many slot machines.
+    -These machines give back 80-90% of your money.
+    -You explored these machines and examined the distributions.
+    -Even if they all win at the same rate, we want to examine the distributions and select the most profitable machine.
+    -This theory is based on the part I wrote above.
+    -It can be found with a reinforcement method. The research is up to you :)
 
-	[+] BU KONUNUN İLK ALGORİTMASI UCB Upper Confidence Bound
-	
-	*UPPER CONFİDENCE BOUND UST GUVEN SINIRI
-	-Her olayın arkasında bir dağılım vardır.
-	-Kullanıcı her seferinde bir eylem yapar (event e)
-	-Bu eylem karşılığında skor döner. Bu eyleme örnek vererek adımları sıralayalım.
-	-Örneğin bir reklanma oranı üzerinden hesap yapalım tıklanma 1 tıklanmama 0 gibi.
-	-Amaç tıklanmaları maksimuma çıkarmak.
-	-Alt sınır ve üst sınır olarak iki durumumuz var: mükemmel durum ve en kötü durum
-	-Bilmediğimiz gizi dağılım durumunu tespit etmek için denemeler sonucu dağılımın bazı kısımları elenir.
-	-Bu elenmelerden sonra en iyi durum en hızlı şekilde elde edilmeye çalışılır.
-	-Bu algoritma belirli bir aşama sonrasında alternatifler arasında en yüksek değere sahip olanı baz alır
-	-Belirli bir hata oranını göze alarak optimum duruma en yakın durumu elde etmeye çalışır.
-	-Aşağıdaki senaryoya bir göz atalım:
-	
-	SENARYO
-	Reklam Verileri: en fazla tıklanan reklam bulunacak ilk 5 güne bakılacak 6. gün en çok gösterilen reklam kullanıcı karşısına çıkacak
-----------------------------------------------------------------------------	
-	*Random Selection: 
-		-Herhangi bir zeki seçim yapmaz rastgele seçer ödül kazanma mantığı işler.
-		-Bir havuzun içerisinden rastgele reklamlar seçilir kullanıcılara gösterilir.
-		-Kullanıcıların tıkladıkları puan kazanır. Es geçtikleri puan kaybeder.
-		-Bu mantığa göre en optimize sonuca ulaşabilecek miyiz??
-		-Bunun python kodunu yazarak deneyeceğiz.
-		-Burada önemli bir şey var reklamların tıklanma sıklığı eşit değildir.
-----------------------------------------------------------------------------	
-	*UCB Algoritması:
-	-ADIM1: Her turda tur sayısı n olsun her reklam alternatifi için aşağıdaki sayılar tutulur:
-		Ni(n): i sayılı reklamın o ana kadarki tıklanma sayısı
-		Ri(n): o ana kadar ki i reklamına gelen toplam ödül
-	-ADIM2: Yukarıdaki iki sayıdan aşağıdaki değerler hesaplanır:
-		O ana kadarki reklamın ortalama ödülü Ri(n)/Ni(n)
-		Güven aralığı için aşağı ve yukarı oynama potansiyeli di(n)((3/2)*(log(n)/Ni(n)))^(1/2)
-	-ADIM3: En yüksek UCB değerine sahip olan alınır.
+    *A-B TEST
+    -Used to find out whether an ad will be clicked by the user.
+    -By showing multiple ads to users, people's reactions are measured and results are recorded.
+    -By looking at the results we need to make decisions in the fastest way and with the fewest trials.
+    -A decision can be made with a reinforcement method.
+
+    [+] THE FIRST ALGORITHM OF THIS TOPIC: UCB Upper Confidence Bound
+
+    *UPPER CONFIDENCE BOUND
+    -There is a distribution behind every event.
+    -The user performs an action each time (event e).
+    -A score is returned in exchange for this action. Let us list the steps by giving an example of this action.
+    -For example let us calculate over an ad rate, clicking 1 not clicking 0.
+    -The goal is to maximize clicks.
+    -We have two situations as lower bound and upper bound: perfect situation and worst situation.
+    -To detect the unknown hidden distribution, some parts of the distribution are eliminated through trials.
+    -After these eliminations, the best situation is tried to be obtained in the fastest way.
+    -This algorithm takes the one with the highest value among alternatives after a certain stage.
+    -It tries to obtain the closest situation to the optimum by accepting a certain error rate.
+    -Let us look at the following scenario:
+
+    SCENARIO
+    Ad Data: the most clicked ad will be found, the first 5 days will be examined, on the 6th day the most shown ad will appear in front of the user.
 ----------------------------------------------------------------------------
-	REINFORCED LEARNİNG:
-	*THOMPSON ÖRNEKLEMESİ:
-	-Adım 1 : Her aksiyon için iki sayıyı hesaplamalıyız 
-		Ni1(n): o ana kadar ödül olarak 1 gelmesi sayısı
-		Ni2(n): o ana kadar ödül olarak 0 gelmesi sayısı
-	-Adım 2: her ilan için aşağıda verilen Beta dağılımında bir rastgele sayı üretiyoruz
-		Oi(n) = B(N1i(n) + 1.N0i(n) + 1)
-	-Adım 3: En yüksek Beta değerini seçiyouz
-	-Bayes yaklaşımını takip eden bir algoritmadır daha çok bayese yakındır
-	-UCB bu algoritmaya göre greedy algorithm olarak isimlendirilebilir.
-	-Elinizde yeterli veri yok ve bir miktar veriden hem öğrenme hem uygulama yapma
-	-Gözlemlerin eşit dağılmadığı durumlarda
-	-UCB sıçramalarda kullanılır. Thompson ise lineer bir ilerleme ile yapılır.
+    *Random Selection:
+        -Does not make any intelligent selection, selects randomly, reward earning logic works.
+        -Random ads are selected from a pool and shown to users.
+        -The ones users click earn points. The ones they skip lose points.
+        -Can we reach the most optimized result with this logic?
+        -We will try by writing the Python code.
+        -Something important here is that the click frequencies of ads are not equal.
+----------------------------------------------------------------------------
+    *UCB Algorithm:
+    -STEP 1: In each round, let the round number be n. For each ad alternative the following numbers are kept:
+        Ni(n): the number of clicks of ad number i up to that point.
+        Ri(n): the total reward for ad i up to that point.
+    -STEP 2: From the two numbers above, the following values are calculated:
+        The average reward of the ad up to that point: Ri(n)/Ni(n)
+        The potential to swing up and down for the confidence interval: di(n) = ((3/2)*(log(n)/Ni(n)))^(1/2)
+    -STEP 3: The one with the highest UCB value is selected.
+----------------------------------------------------------------------------
+    REINFORCEMENT LEARNING:
+    *THOMPSON SAMPLING:
+    -Step 1: We must calculate two numbers for each action.
+        Ni1(n): the number of times reward 1 has come up to that point.
+        Ni2(n): the number of times reward 0 has come up to that point.
+    -Step 2: For each ad we generate a random number from the Beta distribution given below.
+        Oi(n) = B(N1i(n) + 1, N0i(n) + 1)
+    -Step 3: We select the highest Beta value.
+    -It is an algorithm that follows the Bayesian approach, closer to Bayes.
+    -UCB can be called a greedy algorithm compared to this algorithm.
+    -When you do not have enough data and need to both learn and apply from a small amount of data.
+    -In situations where observations are not equally distributed.
+    -UCB is used in jumps. Thompson is done with a linear progression.
 __________________________________________________________________________________________________________________________
 
 NATURAL LANGUAGE PROCESSING
-DOĞAL DİL İŞLEME
 
-	2 tip hedef olabilir
-	*Natural Language Understanding NLU
-	-Tüm makine öğrenmesi modellerinde olduğu gibi 3 adımdan oluşan algoritmaya sahiptir.
-	-Veri ön işleme - öznitelik çıkarımı - öğrenme AŞAĞIDAKİ KAVRAMLAR ARAŞTIRILMALI
-		-Veri ön işleme: Stopwords, case, parsers
-		-Öznitelik Çıkarımı: kelime sayıları, kelime grupları, N-gram, TF-ID
-	*Natural Language Generetion NLG
+    2 types of goals can exist:
+    *Natural Language Understanding NLU
+    -Like all machine learning models, it has an algorithm consisting of 3 steps.
+    -Data preprocessing - feature extraction - learning. THE FOLLOWING CONCEPTS SHOULD BE RESEARCHED
+        -Data preprocessing: Stopwords, case, parsers
+        -Feature extraction: word counts, word groups, N-gram, TF-IDF
+    *Natural Language Generation NLG
 
-	Yaklaşımlar
-	*Linguistik (dil bilimi) yaklaşımı
-		-Cümle yapısına göre analiz yapar kelimelerin ek kök analizini yapar.
-		-Bu sebeple yavaş çalışır ama daha isabetlidir.
-		-Bu yaklaşımın adımlarının bazı ayrıntıları aşağıdadır.
-		-Morfoloji Şekilbilim bütün alternatifler listelenir, bir kelimenin bütün anlam ihtimalleri alınır.
-		-Syntax Sözdizim anlamları sıralanan kelimenin cümle içindeki yeri tespit edilir.
-		-Semantics Anlambilim morfoloji kısmında belirtilen anlamalardan hangisi syntaxa uygun olduğu bulunur.
-		-Pragmatics Kullanımbilimi kullanılan kelimenin ironi olup olmaıdığına bakılır.
+    Approaches
+    *Linguistic approach
+        -Analyzes according to sentence structure, performs stem and suffix analysis of words.
+        -For this reason it works slowly but is more accurate.
+        -Some details of the steps of this approach are below.
+        -Morphology: all alternatives are listed, all possible meanings of a word are taken.
+        -Syntax: the position of the word whose meanings are listed within the sentence is determined.
+        -Semantics: from the meanings specified in the morphology part, which one fits the syntax is found.
+        -Pragmatics: it is checked whether the word used is irony or not.
 --------------------------------------------------------------------------------------------------------------------------
-	*İstatistiksel yaklaşımlar 
-		-Metin sınıflandırmada kelimelerin anlamını anlamadan metnin hangi konuda olduğu anlaşılabilir.
-		-Kısaca bir kelimenin bir metinde kaç defa geçtiğini inceler.  
-		-N-gram belirli karakterlerin peşpeşine gelmesi ihtimallerini bulur
-		-TF-IDF
-		-Word-Gram
-		-BOW Bag OF Words mail spam mı değil mi gibi şeyleri tespit edebilir.
-			spam mailde olan kelimeler ve olmayan kelimeler farklı çantalara konur ve metinden sayılır.
-	*Hibrit yaklaşımlar  	 
-		-İki yaklaşımı karıştırarak metni anlamlandırmaya çalışma yaklaşımıdır.
-----------------------------------------------------------------------------	
-	*KULLANILDIĞI ÖRNEKLER
-	-Yazar Tanıma
-	-Metin Sınıflandırma
-	-Duygusal Kutupsallık Fikir Madenciliği
-	-Anomali Yaklanması
-	-Metin Özetleme
-	-Soru Cevaplama
-	-Etiket Bulurları ve Anahtar Kelime Çıkarımı
-----------------------------------------------------------------------------	
-	*KÜTÜPHANELER
-	-nltk
-	-Spacy : Endüstriyel
-	-nlp : Stanfor university
-	-OpenNLP : Apache açık doğal dil işleme
-	-RAKE (Rapid Automatic Keyword Extraction)
-	-Amueller Word Cloud
-	-Tensor Flow Word2Vec
+    *Statistical approaches
+        -In text classification, it is possible to understand what topic the text is about without understanding the meaning of words.
+        -In short, it examines how many times a word appears in a text.
+        -N-gram finds the probabilities of certain characters appearing consecutively.
+        -TF-IDF
+        -Word-Gram
+        -BOW Bag Of Words: can detect things like whether a mail is spam or not.
+            words that are in spam mail and those that are not are put in different bags and counted from the text.
+    *Hybrid approaches
+        -An approach that tries to make sense of text by mixing the two approaches.
 ----------------------------------------------------------------------------
-	*TÜRKÇE DOĞAL DİL İŞLEME KÜTÜPHANELERİ
-	-Zemberek
-	-İTÜ
-	-TSPELL
-	-Yıldız Teknik Üniversitesi Kemik
-	-Wordnet Balkanet
-	-TrMorph
-	-TSCorpus
-	-Metu-Sabancı Tree Bank ve ITU Dpğrulama Kümesi
-----------------------------------------------------------------------------	
-	-Makine öğrenmesinde hazır verilerden yararlanma durumu yoktur.
-	DDİ de biz makinelerin insan öznitelikleri çıkarma konusunda insan yakınlaşmalıdır
-	Makine öznitelik konusunda bizimle eşdeğer değildir.
-	Bu sebeple veri ilk önce önişlemeden geçirilir sonra veri öznitelikleri çıkarılır.
-	Sonrasında makine öğrenmesi algoritmaları çıkarılır.
-	Veri ön işleme : preprocessing, stop wods, case, Parsers(html)
-	Öznitelik Çıkarımı : feature engineering, kelime sayıları, kelime grupları, n-gram, RF-IDF
+    *USAGE EXAMPLES
+    -Author Recognition
+    -Text Classification
+    -Sentiment Polarity / Opinion Mining
+    -Anomaly Detection
+    -Text Summarization
+    -Question Answering
+    -Tag Finders and Keyword Extraction
+----------------------------------------------------------------------------
+    *LIBRARIES
+    -nltk
+    -Spacy: Industrial
+    -nlp: Stanford University
+    -OpenNLP: Apache Open Natural Language Processing
+    -RAKE (Rapid Automatic Keyword Extraction)
+    -Amueller Word Cloud
+    -TensorFlow Word2Vec
+----------------------------------------------------------------------------
+    *TURKISH NATURAL LANGUAGE PROCESSING LIBRARIES
+    -Zemberek
+    -ITU
+    -TSPELL
+    -Yildiz Technical University Kemik
+    -Wordnet Balkanet
+    -TrMorph
+    -TSCorpus
+    -Metu-Sabanci Tree Bank and ITU Validation Set
+----------------------------------------------------------------------------
+    -In machine learning there is no situation of using ready-made data.
+    In NLP machines should approach humans in terms of extracting human features.
+    Machines are not equivalent to us in terms of features.
+    For this reason data is first put through preprocessing, then data features are extracted.
+    After that machine learning algorithms are applied.
+    Data preprocessing: preprocessing, stop words, case, Parsers (html)
+    Feature extraction: feature engineering, word counts, word groups, n-gram, TF-IDF
 __________________________________________________________________________________________________________________________
-	
-YAPAY SİNİR AĞLARI: ARTIFICIAL NEURAL NETWORK:
 
-	-İnsan vucudundaki sinir hücrelerine benzer yapılar oluşturarak bir yapay zeka oluşturmayı ifade eder.
-	-Anahtar Kelimeler:
-		Sinirbilim ve bilgisayar bilimi
-		Nöron
-		Sinapsis
-		YSA çalışma mantığı
-		Gradient Descent
-		Stochastic Gradient Descent
-		Backpropagation
-	
-	-Bu modelde veriler kesinlikle standartlaşmış olmalıdır 0-1 aralığında olmalıdır.
+ARTIFICIAL NEURAL NETWORKS
 
-    Not: [+] Nöral sinir ağları her zaman ön işleme istemez eğer nöron sayınız yeterliyse.
-	 [+] Çünkü ön işlemeyi sizin yerinize fazladan verdiğiniz nöronlar yapar
+    -It refers to creating an artificial intelligence by forming structures similar to nerve cells in the human body.
+    -Keywords:
+        Neuroscience and computer science
+        Neuron
+        Synapse
+        ANN working logic
+        Gradient Descent
+        Stochastic Gradient Descent
+        Backpropagation
 
-	-Bu modelde çıktılarda 0-1 aralığında gelir. Sonuçlar buna bağlı olarak oluşur.
-	-Çıktılar çoklu bir şekilde de olabilir. Birden fazla çıktı görülebilir.
-	-Sinapsislerin üzerinde ağırlıklar taşınır bu ağırlıklar karar verme sürecini etkiler.
-	-İnputlar bir operatör yardımıyla ağırlıklarla güncellenir ve outputa aktarılır.
-	
-	-Örnek olarak girdiler ağırlıklarla çarpılır sonuçlar toplanır ve bu sonuca göre ağ output verir.
-	
-	-Bir nöronun aktive olması için bir aktivasyon fonksiyonu vardır. 
-	-Nöronda aktifleşme olup olmayacağına bu fonksiyonun outputuna göre karar verilir.
+    -In this model data must absolutely be standardized, it must be in the 0-1 range.
 
-	*Aktivasyon fonksiyonu ve çeşitleri:
-		-Bu fonksiyonlar insan vucudunda bir nöronun elektriksel sinyalinin eşik değeri gibi düşünülebilir.
-		-Herhangi bir fonksiyon aktivasyon fonksiyonu olarak kullanılabilir(genelde).
-		-Ama bazı fonksiyonlar daha çok kullanılır.
-		-Sigmoid fonksiyonlar: 1/(1+e^-t) en çok kullanılan fonksiyondur.
-		-Adım fonksiyonu bir treshold değeri olan donksiyondur, belirli bir noktadan sonra atlama yapan fonksiyondur. Ya 1 ya 0 döndürür.
-		-Sigmoid fonksiyonlar 0 ile 1 arasındaki değerleri belirli bir eşik değer olmaksızın alırlar 
-		-Grafiksel olarak düşünülürse [0,1] aralığında değerleri çıktı olarak vereceği görülür. 
-		-Düzleştirilmiş Fonksiyon ise belirli bir aralıkta 0 değeri verir. 
-		-Belirli bir değer sonrasında 0 dan büyük değerler alır. max(0,x) şekilinde bir fonksiyon düşünülebilir.
-		-Tanh fonksiyonu (bu araştırılacak)
-		
-	*Yapay Sinir Ağları:
-		-Giriş katmanı gizli katman ve çıkış katmanı olmak üzere 3 katmandan oluşur.
-		-Gizli katman sayısı artabilir. Ya da gizli katmandaki nöron sayısı artabilir.
-		-Çıkış katmanı ve gizli katman bir nörondan oluşur.
-		-Yapay sinir ağlarında gizli katmanda kaç adet nöron olacağı önemlidir.
-		-Bunu belirlemek için koordinat sisteminden faydalanabiliriz.
+    Note: [+] Neural networks do not always require preprocessing if your number of neurons is sufficient.
+         [+] Because the extra neurons you provide do the preprocessing for you.
 
-		|   		Nöron sayısının nasıl belirleneceği aşağıdaki örneğe bakalım:
-		| .       .           Yandaki karede köşegenlerin noktalarını içine alacak 
-		|				yapay sinir ağı tasarlamak istiyoruz iki tane girişimiz
-		| .       .			var bir çıkışımız var gizli katmanda kaç nöron olur						
-		|________________		yalnızca doğrusal olarak uzayı bölebiliriz.
-		
-		Bu durumda köşegenlerin çıktı içerisinde olmasını istiyorsak en az iki nöron kullanmalıyız.
-		
-	*Yapay Sinir Ağları Nasıl Öğrenir:
-		-Buradaki öğrenme ağırılık ve treshold sayısal değerlerinin artırılması ve azaltılmasından ibarettir.
-		-En basit öğrenme Perceptron: bir ceza mekanizması işler. 
-		-Ceza = 1/2 (gerçek-tahmin)^2 her yanlış tahminde ağırlıklar ceza ile çarpılır.
-		-Bu çarpma işleminin farklı değerlerle de yapılabileceğini unutmamak gerekir.
+    -In this model outputs also come in the 0-1 range. Results are formed based on this.
+    -Outputs can also be in a multiple form. Multiple outputs can be seen.
+    -Weights are carried on synapses and these weights affect the decision-making process.
+    -Inputs are updated with weights through an operator and transferred to the output.
+
+    -As an example, inputs are multiplied by weights, results are summed, and the network gives output based on this result.
+
+    -For a neuron to be activated, there is an activation function.
+    -Whether activation will occur in the neuron is decided based on the output of this function.
+
+    *Activation function and its types:
+        -These functions can be thought of as the threshold value of a neuron's electrical signal in the human body.
+        -Any function can be used as an activation function (generally).
+        -But some functions are used more frequently.
+        -Sigmoid functions: 1/(1+e^-t) is the most commonly used function.
+        -Step function is a function with a threshold value, a function that makes a jump after a certain point. It returns either 1 or 0.
+        -Sigmoid functions take values between 0 and 1 without a specific threshold value.
+        -If thought graphically, it can be seen that it will give values in the [0,1] range as output.
+        -The Rectified function gives a value of 0 in a certain range.
+        -After a certain value it takes values greater than 0. A function like max(0,x) can be considered.
+        -Tanh function (this will be researched)
+
+    *Artificial Neural Networks:
+        -It consists of 3 layers: input layer, hidden layer, and output layer.
+        -The number of hidden layers can increase. Or the number of neurons in the hidden layer can increase.
+        -The output layer and hidden layer consist of neurons.
+        -In artificial neural networks, how many neurons will be in the hidden layer is important.
+        -We can use the coordinate system to determine this.
+
+        |           How to determine the number of neurons, let us look at the example below:
+        | .       .     In the square on the side we want to design an artificial neural
+        |               network that contains the diagonal points. We have two inputs
+        | .       .     and one output. How many neurons in the hidden layer?
+        |___________    We can only divide the space linearly.
+
+        In this case if we want the diagonals to be within the output, we should use at least two neurons.
+
+    *How Artificial Neural Networks Learn:
+        -The learning here is simply about increasing and decreasing the numerical values of weights and thresholds.
+        -The simplest learning Perceptron: a penalty mechanism works.
+        -Penalty = 1/2 (actual - prediction)^2. With each wrong prediction, weights are multiplied by the penalty.
+        -It should not be forgotten that this multiplication can also be done with different values.
 --------------------------------------------------------------------------------------------------------------------------
-	Gradyan Alçalış:
-		-Yapay sinir ağlarında öğrenme esnasında ağırlıklar belirli değerlerle çarpılır.
-		-Bu öğrenme süreci çok katmanlı yapay sinir ağlarında çok fazla işlemle olmaktadır.
-		-Öğrenme sürecini sistematikleştirmeye ve doğru öğrenim yöntemine ihtiyacımız var.
-		-Eğer büyük öğrenme oranları kullanılırsa ağırlıkların devamlı 2 farklı değer arasında kaldığı ve doğru değeri bulamadığı gözlenebilir.
-		-Küçük öğrenme oranları kullanarak doğru koşulun sağlandığı nokta bulunmya çalışılır.
-		-Gradyan alçalış tam olarak bu duruma verilen isimdir.
-		-Kısaca ağırlıkların aynı değerler arasında gidip gelmesini engellemek için oluşturulmuştur. 
---------------------------------------------------------------------------------------------------------------------------	
-	Stokastik-Batch (yığın) Gradyan Alçalış:
-		-Gradyan alçalışın farklı bir çeşididir. Yerel minimum noktalar için geliştirilmiştir.
-		-Mutlak minimum noktasını bulmaya çalıştığımızı varsayalım. 
-		-Yerel minimum bir noktayı mutlak minimum olarak almamızı engelleyen bir algoritmaya ihtiyacımız olacaktır.
-		-Stokastik verilerin tamamını görmeden karar verir. 
-		-Batch bu minimum noktaları ayırt etmek için verşlerin tamamına bakılır.
-		-Mini batch yaklaşım diye bir algoritma daha vardır. Verinin belirli bir kısmını okuyarak karar verme olarak adlandırılabilir. 
-		-Bu yaklaşımlardaki amaç bize gelen veri setindeki en optimum veriyi bulabilmek ya da bize gelen verilere en uygun anlamı kazandırmaktır.
---------------------------------------------------------------------------------------------------------------------------	
-	*Geri Yayılım (Backward Propagation)
-		Algoritma Adımları:
-		1 Bütün ağı rasgele sayılarla (sıfıra yakın ama sıfır değil) ilkendir.
-		2 Veri kümesinden ilk satır giriş katmanına verilir.(Her öznitelik bir nöron)
-		3 İleri yönlü yayılım yaparak YSA istenen sonucu verene kadar güncellenir.
-		4 Gerçek ve çıktı arasındaki fark hesaplanır.
-		5 Geri yayılım yaparak her sinaps üzerindeki ağırlık hatadan sorumlu olduğu miktarda değiştirilir. Değiştirilme miktarı ayrıca öğrenme oranına bağlıdır.
-		6 1-5 arasındaki adımlar istenen sonuç elde edilene kadar güncellenir.
-		7 Bütün eğitim kümesi çalıştırıldıktan sonra bir tur (epoc) Aynı veri kümeleri kullanılarak tur tekrarları yapılır. (tur sayısı sınırlanabilir)
---------------------------------------------------------------------------------------------------------------------------	
-	-Learning rate Öğrenme hızını ifade eder. Epoc tur sayısını ifade eder.
+    Gradient Descent:
+        -During learning in artificial neural networks, weights are multiplied by certain values.
+        -This learning process involves a lot of computation in multi-layered neural networks.
+        -We need to systematize the learning process and find the right learning method.
+        -If large learning rates are used, it can be observed that weights keep oscillating between 2 different values and cannot find the correct value.
+        -By using small learning rates, the point where the correct condition is met is tried to be found.
+        -Gradient descent is exactly the name given to this situation.
+        -In short, it was created to prevent weights from going back and forth between the same values.
+--------------------------------------------------------------------------------------------------------------------------
+    Stochastic-Batch Gradient Descent:
+        -It is a different type of gradient descent. Developed for local minimum points.
+        -Let us assume we are trying to find the absolute minimum point.
+        -We will need an algorithm that prevents us from taking a local minimum point as the absolute minimum.
+        -Stochastic makes decisions without seeing all the data.
+        -Batch looks at all the data to distinguish these minimum points.
+        -There is also another algorithm called mini batch approach. It can be named as making decisions by reading a certain portion of the data.
+        -The purpose of these approaches is to find the most optimum data in the dataset we receive or to give the most appropriate meaning to the data we receive.
+--------------------------------------------------------------------------------------------------------------------------
+    *Backpropagation (Backward Propagation)
+        Algorithm Steps:
+        1. Initialize the entire network with random numbers (close to zero but not zero).
+        2. The first row from the dataset is given to the input layer. (Each feature is one neuron)
+        3. Forward propagation is done and the ANN is updated until it gives the desired result.
+        4. The difference between actual and output is calculated.
+        5. Backpropagation is done and the weight on each synapse is changed by the amount it is responsible for the error. The amount of change also depends on the learning rate.
+        6. Steps 1-5 are updated until the desired result is obtained.
+        7. After the entire training set is run, one round (epoch). Round repetitions are done using the same datasets. (the number of rounds can be limited)
+--------------------------------------------------------------------------------------------------------------------------
+    -Learning rate represents the learning speed. Epoch represents the number of rounds.
 
-	(Takviyeli öğrenme veya eldeki bütün verileri ilgili ağda çalıştırdıktan sonra bir seferde güncelleme yap)Bunlar madde 6 için
+    (Reinforcement learning or update all at once after running all available data through the relevant network) These are for step 6.
 
-	*İleri Yayılım (Forward Propagation)
-		-Geri yayılımla farkından bahsederek bu konuyu bitirelim.
-		-İleri yayılım sinir ağının girdi verilerinden çıktı üretmek için ilerleme işlemidir.
-		-Geri yayılım ise hatayı geriye doğru yayarak ağırlıkların güncellenmesi için kullanılan bir öğrenme mekanizmasıdır.
-		-İleri yayılım aşamasında ağın çıktıları hesaplanırken, geri yayılım aşamasında ağın ağırlıkları güncellenir ve ağın daha iyi sonuçlar üretmesi sağlanır.
-		-Aradaki fark biri sonuca giderken düzeltmeler yapar diğeri ise sonuçtan gelerek nöronlardaki ağırlıkları düzeltir.
- 
+    *Forward Propagation
+        -Let us finish this topic by discussing its difference from backpropagation.
+        -Forward propagation is the process of advancing the neural network from input data to produce output.
+        -Backpropagation is a learning mechanism used to update weights by propagating the error backward.
+        -During the forward propagation phase the outputs of the network are calculated, while during the backpropagation phase the weights of the network are updated and the network is made to produce better results.
+        -The difference is that one makes corrections while going to the result and the other corrects the weights in neurons coming from the result.
+
 __________________________________________________________________________________________________________________________
-		
-BOYUT İNDİRGEME 
 
-	*PCA:
-		-Kullanım alanları: Gürültü filtreleme, Görselleştirme, Öznitelik çıkarımı
-				   Öznitelik eleme dönüştürme, Sinyal işleme, Görüntü işleme 
-		-Boyut dönüştürme olarak tanımlanabilir. Tabi boyutlar dönüştürülürken veriler kaybolabilir. Dikkatli olunması gerekir.
-		-Eigen value Öz değer ve Eigen vector Öz vektör burada hatırlanması gereken iki kavramdır.
-		-Bir örnekle hatırlayalım:
-		[+] Bir matris için özdeğer ve özvektör sayısı birden fazla olabilir.
-			[1 2 0]   [1]   [3]      [1] 	A*v = x*v x: özdeğer v:özvektör
-			[0 1 2] * [1] = [3] = 3* [1]   Bu matris için 3 öz değer
-			[1 0 2]	  [0]   [0]	 [0]      1,1,0 ise özvektördür
+DIMENSIONALITY REDUCTION
 
-		-Projeksiyon matrisi w:bir vektörün bir uzaydaki yansımasını temsil eden bir kare matristir. 
-		-(ayrıntı https://medium.com/kaveai/matemati%C4%9Fi-ve-python-uygulamas%C4%B1yla-lineer-regresyon-normal-denklem-dd38c43e0941)
+    *PCA:
+        -Use cases: Noise filtering, Visualization, Feature extraction
+                   Feature elimination/transformation, Signal processing, Image processing
+        -It can be defined as dimension transformation. Of course data can be lost while transforming dimensions. Care must be taken.
+        -Eigenvalue and Eigenvector are two concepts to remember here.
+        -Let us remember with an example:
+        [+] A matrix can have more than one eigenvalue and eigenvector.
+            [1 2 0]   [1]   [3]      [1]   A*v = x*v  x: eigenvalue v: eigenvector
+            [0 1 2] * [1] = [3] = 3* [1]   For this matrix 3 is the eigenvalue
+            [1 0 2]   [0]   [0]      [0]   1,1,0 is the eigenvector
 
-		Algoritma Adımları:
-		 -İndirgenmek istenen boyut k olsun
-		 -Veri standartlaştırılır.
-		 -Kovaryans veya korelasyon matrisinden öz değerler ve öz vektörler elde edilir Veya SVD kullanılır. (SVD: singular value decomposition)
-		 -Özdeğerler büyükten küçüğe sıralanır k tanesi alınır.
-		 -Seçilen k özdeğerden w projeksiyon matrisi oluşturulur.
-		 -Orijinal veri kümesi X w kullanılarak dönüştürülür.
-		 -K boyutlu Y uzayı elde edilir.
-		
+        -Projection matrix w: a square matrix representing the projection of a vector in a space.
+        -(detail https://medium.com/kaveai/matemati%C4%9Fi-ve-python-uygulamas%C4%B1yla-lineer-regresyon-normal-denklem-dd38c43e0941)
 
-	LDA: LINEAR DISCRIMINANT ANALYSIS
-		-PCA benzeri bir boyut donusumu yapar. Fakat gözetimli bir şekilde bu işi yapar.
-		-Yani PCA gözetimsiz bir indirgeme yaparken LCA gözetimli olarak yapar.
-		-LDA sınıf farklarını ve etiketleri göz önüne alarak indirgeme yapar.
-		-LDA'de amaç sınıfları birbirinden ayıran en iyi boyutu bulmaktır
-		-PCA'de ama ç verileri birbirinden ayıran en faydalı boyutu bulmaktır.
-		-Şu makaleyi oku https://sebastianraschka.com/Articles/2014_python_lda.html
-		-Algoritma adımları aslında PCA dan çok farklı değildir.
-		-En büyük fark ilk adımında olur. Ayrıntılı bilgi için yukarıdaki makaleyi okuyabilirisiniz.
+        Algorithm Steps:
+         -Let k be the dimension to be reduced to.
+         -Data is standardized.
+         -Eigenvalues and eigenvectors are obtained from the covariance or correlation matrix, or SVD is used. (SVD: singular value decomposition)
+         -Eigenvalues are sorted from largest to smallest and k of them are taken.
+         -From the selected k eigenvalues the projection matrix w is created.
+         -The original dataset X is transformed using w.
+         -The K-dimensional Y space is obtained.
+
+
+    LDA: LINEAR DISCRIMINANT ANALYSIS
+        -It performs a dimension transformation similar to PCA. But it does this job in a supervised manner.
+        -That is, while PCA does unsupervised reduction, LDA does it supervised.
+        -LDA reduces by considering class differences and labels.
+        -In LDA the goal is to find the best dimension that separates classes from each other.
+        -In PCA the goal is to find the most useful dimension that separates data from each other.
+        -Read this article: https://sebastianraschka.com/Articles/2014_python_lda.html
+        -The algorithm steps are actually not very different from PCA.
+        -The biggest difference is in the first step. You can read the article above for detailed information.
 __________________________________________________________________________________________________________________________
-		
-PROBLEME GÖRE MODEL NASIL SEÇİLMELİ:
 
-	-Modellerin başarısı, parametrelere bağlıdır.
-	-Makine öğrenmesi parametreleri optimize etmez. 
-	-Bizim kendi tecrübemiz ve isteklerimiz doğrultusunda parametreleri optimize etmemiz gerekir. 
-	-Model seçiminden önce dikkat edilmesi gereken ilk nokta model değerlendirilmesidir (evalution)
-	-Şimdiye kadar test kümesindeki başarıyı ölçtük. (split validation yaptık)
-	-Veri bölündükten sonra makine öğrenmesinin uygunluğuna bakıyorduk artık öyle değil !!
-	-Yeni terimler: K-fold cross validation (k-katlamalı çarpraz doğrulama), Grid Search (Izgara Araması)
-		Problemin tipine göre model seçimi için kullanılan algoritma farklılık gösterebilir.
-	-Bu farklılık konusunda bağımlı değişken var olması da önemli bir ölçüttür. 
-	-Eğer bağımlı değişken yoksa gözetimsiz öğrenme olacağı söylenebilir.
-	-Bağımlı değişken yoksa sınıflandırma ya da regresyon olacaktır.
-	-Bu aşamadan sonra bağımlı değişken kategorik mi sürekli sayı mı da önemli bir ölçüttür.
-	-Bir diğer aşama doğrusal olan ya da doğrusal olmayan şeklinde ayrım yapılması da önemlidir.
-	-Yani kısaca verilerin iyi bir şekilde incelenmesi ve bunun sonucunda kararlar verilmesi en doğru yoldur.
+HOW TO SELECT A MODEL BASED ON THE PROBLEM:
 
-	**K-Fold Cross Validation (k-katlamalı çarpraz doğrulama):
-	     -Cross validation n-fold ifadesinde n = 4 olsun.
-	     -İlk olarak veriyi +++- şeklinde - test kümesi + lar ise train kümesi olarak ayırır. Başarı oranını hesaplar.
-	     -Sonra ++-+ şeklinde tekrar başarı oranını hesaplar. +-++ olarak tekrar hesaplar. -+++ olarak tekrar hesaplar.
-	     -Bu hesaplamalarda bulduğu değerlere göre karar verir. Bu kısımdan sonra bu algoritmanın farklı varyasyonları vardır.
-	     -Karar mekanizması değerler ortalamasına bağlı olarak, minimum değeri alarak ya da farklı bir şekilde olabilir.
-	     -Buradaki n değerine bağlı olarak veri n kez gezilir.
-	     -Bu algoritma çoğunlukla sınıflandırma algoritmaları için kullanılır.
-	   
-	
-	** Grid Search
-	     -Çalıştırdığımız algoritmanın alacağı parametrelerin optimize edilmesi de önemlidir.
-	     -Bu kısım kod üzerinden bakacağız, ve anlatacağız.
-	      
+    -The success of models depends on parameters.
+    -Machine learning does not optimize parameters.
+    -We need to optimize parameters according to our own experience and wishes.
+    -The first point to pay attention to before model selection is model evaluation.
+    -Until now we measured success on the test set. (we did split validation)
+    -After the data was split we looked at the suitability of machine learning, but not anymore!
+    -New terms: K-fold cross validation, Grid Search
+        The algorithm used for model selection may differ according to the type of problem.
+    -Whether a dependent variable exists is also an important criterion for this difference.
+    -If there is no dependent variable, it can be said to be unsupervised learning.
+    -If there is no dependent variable, it will be classification or regression.
+    -After this stage, whether the dependent variable is categorical or continuous is also an important criterion.
+    -Another stage is that the distinction between linear or non-linear is also important.
+    -In short, examining the data well and making decisions as a result is the most correct way.
+
+    **K-Fold Cross Validation:
+         -In cross validation, in the n-fold expression let n = 4.
+         -First it splits the data as +++- where - is the test set and + is the train set. It calculates the success rate.
+         -Then it calculates the success rate again as ++-+. Calculates again as +-++. Calculates again as -+++.
+         -It makes decisions based on the values found in these calculations. After this part there are different variations of this algorithm.
+         -The decision mechanism can be based on the average of values, by taking the minimum value, or in a different way.
+         -Depending on the n value here, the data is traversed n times.
+         -This algorithm is mostly used for classification algorithms.
+
+
+    **Grid Search
+         -Optimizing the parameters that the algorithm we run will take is also important.
+         -We will look at this part through code and explain it.
+
 __________________________________________________________________________________________________________________________
-	
+
 XGBOOST EXTREME GRADIENT BOOSTING
-	-Okunması gereken link -> https://xgboost.readthedocs.io/en/stable/ 
-	-Çoğu ortamda çalışabilir.
-	-Hızlı çalışır.
-	-Yüksek verilerde iyi performans gösterir.
-	-Problem ve modelin yorumunun mümkün olması.
+    -Link to read -> https://xgboost.readthedocs.io/en/stable/
+    -Can work in most environments.
+    -Works fast.
+    -Shows good performance on large data.
+    -Makes interpretation of the problem and model possible.
 __________________________________________________________________________________________________________________________
 
-MODELLER NASIL KAYDEDİLİR
-	-Pickle Joblib Pmml isimli 3 farklı kaydetme standardı vardır.
-	-Pickle üzerinden bu işlemin nasıl yapıldığını görelim.
-	-Makineyi train edildikten sonra model bir dosyaya nasıl kaydedilecek
-	-Python ile pickle için kodlamayı yapacağız.
+HOW TO SAVE MODELS
+    -There are 3 different saving standards named Pickle, Joblib, and PMML.
+    -Let us see how this operation is done through Pickle.
+    -After the machine is trained, how will the model be saved to a file?
+    -We will code with Python for pickle.
 
-__________________________________________________________________________________________________________________________	
+__________________________________________________________________________________________________________________________
 
-NOT: [+] Görüntü işleme ile ilgili 2001 Jamie Hutchinson IEEE makalesine bir bak
+NOTE: [+] Check the 2001 Jamie Hutchinson IEEE article about image processing.
 
-CNN CONVOLUTIONAL NEURAL NETWORK EVRİŞİMSEL SİNİR AĞLARI
-	-Yapay sinir ağları resimleri işlerken bu modeli kullanabilir.
-	-Özniteliklere göre resmin algılanmasının değişebileceği unutulmamalıdır.
-	-CNN donanım birimlerinin gelişmesiyle hızla gelişmiştir
-	-Facebook resim etiketlemede kişi sorma onaylama işlemi.
-	-Çek imzalarını tanıma.
-	-CNN farklılıkları bulmak üzerine kuruludur.
-	-CNN'in en önemli özelliği öznitelik çıkartma ve farkları bulma konusunda diğer modellerden avantajlıdır.
-	-Kısaca CNN'in makine öğrenmesinin bazı adımlarını kendi içinde barındırıyor.
-	-CNN 3 temel işlemden oluşur:
-		Convolution and Non-Linear
-		Pooling: (resmi küçültmemize yarıyor)
-		Flattening (düzleştirme)
-		Neural Network (Aktivasyon Fonksiyonu özelleştirmeleri)
-		
-	*CONVOLUTİON:
-	-Aslında bir filtredir.
-	-Resimden gelen inputların bir dönüşüm operatörü ile dönüştürüldüğü söylenebilir.
-	-Küçük bir resim düşünelim. 
-	-Öğrenilecek ağ parametrelerinin de elimizde olduğunu varsayalım.
-	-Öğrenilecek ağ parametreleri bir filtre gibi kullanılır.
-	-Her filtre küçük bir alanı öğrenir.
-	-Bu filtrelerin boyutu algoritmadan algoritmaya değişebilir.
-	-6*6 bir resiminiz varsa 3*3 lük filtreleriniz olabilir.
-	-Ama CNN'in farklı çeşitlerinde bu filtrelerin boyutları da değişecektir.
-	-Filtre ile resim üzerinde kıyaslamalar yapılıyor.
-	-Bu karşılaştırmalar sayesinde model öğrenmini gerçekleştiriyor.
-	-Bu filtreleme işlemi sonrası convolution matrisi elde edilir.
-	-Birden fazla filtre için birden fazla convolution matris elde edilir.
-	-Convolutionun bu kısmında borderlarda bulunmuş olur.
-	-Resim renkliyse bu filtreler her renk için uygulanır.
-	-Convolution ya da diğer işlemler yapılmadana matrisler direkt nural networke bağlanabilir.
-	-Ama bu durumda bütün pikseller neural networke dahil olacaktır.
-	-Convolution yaparak neural networke girecek olan pikseller azaltılır.
-	
-	*POOLİNG
-	-Convolution ve pooling adımları istediğimiz sayıda tekrarlanabilir.
-	-Maks havuzlama ya da ortalama havuzlama gibi çeşitleri vardır.
-	-Buradaki havuzlama ksımında olan operatörler de değişebilir.
-	-Convolution sonrası pooling yapıldığında resim küçültülmüş olur.
-	-Pooling resmi alır ve önemli özniteliklerini öne çıkarır.
-	-Önemsizleri de aynı şekilde göz ardı eder.
-	-Bu şekilde uç noktalar ve önemli olan değerler kaybedilmeden resimler küçültülür.
-	
-	FLATTENİNG DÜZLEŞTİRME 
-	-Matrislerin 1 boyutlu duruma dönüştürülmesine denir.
-	-Gelen input convolution matrisini yapay sinir ağlarına bağlamak için bu işlem yapılır.
-	-Düzleştirme işlemi farklı yollarla yapılabilir.
-	-Örneğin satır bazlı ya da sütün bazlı olabilir. 
+CNN CONVOLUTIONAL NEURAL NETWORK
+    -Artificial neural networks can use this model when processing images.
+    -It should not be forgotten that the perception of the image can change according to features.
+    -CNN has developed rapidly with the development of hardware units.
+    -Facebook's face tagging person asking/confirming process.
+    -Recognizing check signatures.
+    -CNN is based on finding differences.
+    -CNN's most important feature is its advantage over other models in feature extraction and finding differences.
+    -In short CNN contains some steps of machine learning within itself.
+    -CNN consists of 3 basic operations:
+        Convolution and Non-Linear
+        Pooling: (helps us shrink the image)
+        Flattening
+        Neural Network (activation function customizations)
 
-	Yapay sinir ağına bağlanamsı ve bu kısımdan sonrası için derin öğrenme bölümüne bakılabilir.
-	Keras dokumantasyonu okunması tavsiye edilir.
+    *CONVOLUTION:
+    -It is actually a filter.
+    -It can be said that the inputs coming from the image are transformed with a transformation operator.
+    -Consider a small image.
+    -Assume that we also have the network parameters to be learned.
+    -The network parameters to be learned are used as a filter.
+    -Each filter learns a small area.
+    -The size of these filters can change from algorithm to algorithm.
+    -If you have a 6x6 image, you can have 3x3 filters.
+    -But in different types of CNN the sizes of these filters will also change.
+    -Comparisons are made on the image with the filter.
+    -Thanks to these comparisons the model performs its learning.
+    -After this filtering process, a convolution matrix is obtained.
+    -For multiple filters, multiple convolution matrices are obtained.
+    -In this part of convolution, the borders will have been found.
+    -If the image is colored, these filters are applied for each color.
+    -Convolution or other operations can be skipped and matrices can be directly connected to the neural network.
+    -But in this case all pixels will be included in the neural network.
+    -By doing convolution, the pixels entering the neural network are reduced.
+
+    *POOLING
+    -Convolution and pooling steps can be repeated as many times as desired.
+    -It has types such as max pooling or average pooling.
+    -The operators in the pooling section can also change.
+    -When pooling is done after convolution, the image is shrunk.
+    -Pooling takes the image and highlights its important features.
+    -It also ignores the unimportant ones in the same way.
+    -This way images are shrunk without losing extreme points and important values.
+
+    FLATTENING
+    -It refers to transforming matrices into a 1-dimensional state.
+    -This operation is done to connect the incoming input convolution matrix to neural networks.
+    -The flattening operation can be done in different ways.
+    -For example it can be row-based or column-based.
+
+    For connecting to the neural network and beyond this point, the deep learning section can be referred to.
+    Reading the Keras documentation is recommended.
